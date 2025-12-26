@@ -65,3 +65,9 @@ console.log(true)
 /*CSS 주석
 여러 줄
 주석 작성(multi line comment)*/
+
+//JSDoc Comment
+/**
+ * 특별한 주석
+ * JSDoc 사용 시 활용
+ */
