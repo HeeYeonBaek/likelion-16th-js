@@ -39,7 +39,7 @@ console.log(908)
 console.groupEnd()
 
 //숫자(소수)
-console.group('숫자(소수)')
+console.groupCollapsed('숫자(소수)')
 console.log(0.6)
 console.log(0.23)
 console.log(0.964)
