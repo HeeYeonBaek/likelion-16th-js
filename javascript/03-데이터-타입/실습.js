@@ -48,28 +48,76 @@ console.log('탭\t\t\t문자')
 console.log('줄바꿈\n\t\t문자')
 console.log('백슬래시(\\)')
 
+// 문자 + 문자 (문자 연결)
+const materialType = '아이언'
+const heroGender = '맨'
+const HERO = materialType + heroGender //아이언 + 맨 = 아이언맨
 
+console.log(HERO)
+
+console.log('Java'+'Script') //'Java'+'Script' = 'JavaScript'
+console.log('1'+'1')
 
 // --------------------------------------------------------------------------
 // 숫자 (Number)
 // --------------------------------------------------------------------------
 
 // 정수
+console.log(94323042)
+console.log(39_390)
 
 // 실수 (정수 + 소수)
+console.log(493 + 0.78)
 
 // 음수
-
-// 큰 숫자
+console.log(-39420)
 
 // 과학적 표기법
 // 2.5 × 10^6 = 2,500,000
+//24e8
+console.log(25e5)
 
 // 특수 숫자 값
 // * Infinity
 // * -Infinity
-// * NaN
+// * NaN (Not a Number)
 
+//JavaScirpt에서 안전하게 사용 가능한 큰 / 작은 정수
+// * Number
+// => Number.MAX_SAFE_INTEGER
+// => Number.MIN_SAFE_INTEGER
+console.log(Number.MAX_SAFE_INTEGER)
+console.log(Number.MIN_SAFE_INTEGER)
+
+
+//수학 산술 연산자 (+, -, ×, ÷)
+//프로그래밍 산술 연산자 (+, -, *, /)
+// 산술 연산 (숫자 값 끼리 계산)
+
+//* 덧셈(add) 연산
+console.log(9 + 1) // 10
+console.log(100 + -20) // 80
+console.log(0.9 + 0.2) // 1.1
+
+//* 뺄셈(subtract) 연산
+console.log(9 - 1) // 10
+console.log(100 - -20) // 120
+console.log(0.9 - 0.2) // 0.7
+
+//* 곱셈(multiply) 연산
+console.log(9 * 1) // 9
+console.log(100 * 20) // 2000, 2_000
+console.log(0.9 * 0.2) // 0.18000000000000002
+
+//* 나눗셈(divide) 연산
+console.log(9 / 1) // 9
+console.log(100 / 20) // 5
+console.log(0.9 / 0.2) // 4.5
+
+//* 나머지(modulus) 연산
+console.log(9 % 1) // 0
+console.log(100 % 20) // 0
+console.log(30 % 5) // 5.551115123125783e-17
 
 // --------------------------------------------------------------------------
 // 불리언 (Boolean)
