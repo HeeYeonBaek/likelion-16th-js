@@ -198,17 +198,35 @@ let APPLEICE
 // --------------------------------------------------------------------------
 
 // 사용자 기본 정보 (let 사용 - 변경 가능)
-// * 이름
+{// * 이름
+let userName = '희연'
 // * 나이
+let userAge = 10
 // * 이메일
+let userEmail = 'asd95121@naver.com'
+
+console.log('변경 전:', userName, userAge, userEmail)
 
 // 정보 업데이트
+userName = '건희'
+userAge = 8
+userEmail = 'dogpome@naver.com'
 
+  console.log('변경 후:', userName, userAge, userEmail)
+}
 // 시스템 설정 (const 사용 - 변경 불가)
 // * 시스템 이름
+const SYSTEM_NAME = 'macOS'
+// TypeError = 상수에 다른 값을 할당하려 했기 때문
+// SYSTEM_NAME = 'windows'
 // * 시스템 버전
+const SYSTEM_VERSION = '15.6.2'
 // * 최대 로그인 시도 횟수
+const MAX_LOGIN_ATTEMPTS = 5
 // * 세션 타임아웃
+const SESSION_TIMEOUT = 3000
+
+
 
 
 // --------------------------------------------------------------------------
@@ -217,14 +235,25 @@ let APPLEICE
 
 // 상품 정보 (변경 가능한 변수)
 // * 상품 이름
+let productName = '노트북'
 // * 상품 가격
+let productPrice = 98000
 // * 상품 재고
+let productInventory = 102
 // * 상품 카테고리
+let productCategory = '디지털 기기 / 랩탑'
 
 // 시스템 상수 (변경 불가)
 // * 부가세 10%
+const SURTAX = 0.1
 // * 무료배송 기준 40,000원
+const SHIPPING_FREE = 40000
 // * 최소 주문 금액 10,000원
+const MIN_ORDER_AMOUNT = 10000
+
+console.log(SURTAX)
+console.log(SHIPPING_FREE)
+console.log(MIN_ORDER_AMOUNT)
 
 
 // --------------------------------------------------------------------------
@@ -233,8 +262,10 @@ let APPLEICE
 
 // const 사용
 // 변경할 필요 없는 값
+const USER_SECRET_KEY = 'dksljsklajsdkf'
 
 // let 사용
+let phoneNumber = '010-9999-2222'
 // 값이 변경될 수 있는 값
 
 
@@ -244,21 +275,33 @@ let APPLEICE
 
 // 문제 1: 학생 정보를 저장하는 변수를 만드세요.
 // - 이름 (변경 가능)
+let studentName = '백희연'
 // - 학년 (변경 가능)
+let grade = '3'
 // - 학번 (변경 불가)
+const STUDENT_NUMBER = '260105'
 // - 학교 이름 (변경 불가)
+const SCHOOL_NAME = '서울대학교'
 
 // 문제 2: 도서관 책 정보를 저장하는 변수를 만드세요.
 // - 책 제목 (변경 불가)
+const BOOKNAME = '모던 자바스크립트 딥다이브'
 // - 저자 (변경 불가)
+const BOOKWRITER = '이웅모'
 // - 대출 가능 여부 (변경 가능)
+let LoanAvailability = 'possible'
 // - 대출 횟수 (변경 가능)
+let NumberofLoans = '3'
 
 // 문제 3: 온라인 쇼핑몰 장바구니를 만드세요.
 // - 상품명 (변경 불가)
+const PRODUCTNAME = '춘배키링'
 // - 가격 (변경 불가)
+const PRODUCT_PRICE = 13000
 // - 수량 (변경 가능)
+let productNumber = 112
 // - 총 금액 (변경 가능)
+let totalPrice = 15000
 
 
 // --------------------------------------------------------------------------
@@ -278,7 +321,7 @@ let APPLEICE
 4. 숫자로 시작 불가
 5. 예약어 사용 불가
 
-✅ 좋은 예시
+✅ 좋은 예시                      
 const MAX_USERS = 100
 const API_URL = 'https://api.example.com'
 let current_user = 'hong@89'
