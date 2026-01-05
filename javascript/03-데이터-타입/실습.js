@@ -168,7 +168,8 @@ console.log('로그인 사용자:', logInUser)
 //로그아웃
 logInUser = null
 
-console.log('로그인 사용자 : ',logInUser)
+console.log('로그인 사용자 : ', logInUser)
+
 // undefined vs null 비교
 // undefined → 값이 없음 (자동)
 // null     → 값이 없음 (의도적)
@@ -178,7 +179,23 @@ console.log('로그인 사용자 : ',logInUser)
 // 심볼 (Symbol)
 // --------------------------------------------------------------------------
 
-// 심볼 생성 - 항상 고유한 값
+// 문자열의 경우, 같은 키(key) 값인 경우 동일한 값이다.
+const productAIdString = 'abc',
+  productBIdString = 'abc'
+
+
+// 심볼 생성 - 항상 고유한 값   
+// 심볼인 경우, 같은 키 값을 사용해도 각각 고유한 값이다.
+  const productAIdSymbol = Symbol ('abc'),
+      productBIdSymbol = Symbol ('abc')
+      
+// 고유한 값 인가?(productAId와 productBId가 값이 달라야 한다.)
+// 비교연산자 (두 값을 비교 => 불리언 값 비교)
+// 두 값이 같다. true 불리언 평가 (고유하지 않다.)
+console.log('문자열을 사용할 때 고유하지 않다?',productAIdString == productBIdString)
+console.log('심볼을 사용할 때 고유하지 않다?',productAIdSymbol == productBIdSymbol)
+
+// 문자열에서는 같은 값이여도 Symbol에서는 다른 값 같은 코드를 작성해도 같은 값이 아니다.
 
 // 설명이 있는 심볼
 
