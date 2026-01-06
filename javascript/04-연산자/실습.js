@@ -8,8 +8,6 @@
 // --------------------------------------------------------------------------
 
 
-
-
 // --------------------------------------------------------------------------
 // [산술 연산] 기본 사칙연산
 // --------------------------------------------------------------------------
@@ -433,8 +431,12 @@ console.log(0 === '0')
 // [비교 연산] 불일치 비교
 // --------------------------------------------------------------------------
 // * != (불일치): 값만 비교
+
+console.log('9' != 9)
+
 // * !== (불일치): 타입과 값 모두 비교
 
+console.log('9' !== 9)
 
 // --------------------------------------------------------------------------
 // [논리 연산] 복합 조건
@@ -444,33 +446,88 @@ console.log(0 === '0')
 let is_member = true
 let purchase_amount = 50000
 // 멤버이고 구매 금액이 3만원 이상인 경우, 할인 적용
-let has_discount
+// 할인 적용 대상인지 여부를 표현식으로 구현하세요!
+// A[멤버(true)] 그리고(and, &&) B[구매금액 >= 3e4] -> 참 또는 거짓 
+let has_discount = is_member && (purchase_amount >= 30000)
+
+console.log(has_discount)
+
 
 // 예제: 접근 권한 조건
 let is_admin = false
-let is_owner = true
+let is_owner = !true
 // 관리자이거나 주인인 경우, 접근 허용
-let can_access
+// A[관리자] or B[주인]인 경우
+let can_access = is_admin || is_owner
+console.log(can_access)
 
 // 예제: 신선 유지 온도 조건
 let temperature = 25
 // 온도가 18도 이상 26도 이하인 경우, 신선 유지
-let keep_fresh
+// 직접 평가 가능한 표현식 (평가값 : Boolean)
+// 조건 A : 온도 >= 18
+// 조건 B : 온도 <= 26
+// 조건 A 그리고 조건 B (A && B)
+
+let keep_fresh = temperature >= 18 && temperature <= 26
+console.log(keep_fresh)
 
 
 // --------------------------------------------------------------------------
 // 연산자 우선 순위
 // --------------------------------------------------------------------------
 // 1. 괄호가 최우선
+let calcFirst = 5 + (4 * 6)
+console.log(calcFirst)
+
 // 2. 곱셈/나눗셈이 덧셈/뺄셈보다 우선
+let calcSecond = 45 / 9 + 8
+console.log(calcSecond)
+
 // 3. 왼쪽에서 오른쪽으로
+let calcThird = 46 * 6 - 39
+console.log(calcThird)
+
 // 4. 할당은 가장 나중
+let calcForth = 40 + 4 + 90
+console.log(calcForth)
 
 
 // --------------------------------------------------------------------------
 // 주의사항
 // --------------------------------------------------------------------------
-// * 문자열 + 숫자 (문자)
-// * 문자열 - 숫자 (숫자)
+// * 문자열 + 숫자(문자화) -> 덧셈기호일 때는 문자열이 숫자보다 힘이 세다
+let input1 /*애플망고*/  = '5', input2 /*참외*/ = '9'
+
+console.log(Number(input1) + Number(input2))
+console.log(input2 + input1)
+
+
+//console.log('5' + 9)
+//console.log(5 + '9')
+
+// * 문자열(숫자화) - 숫자  -> 덧셈기호를 제외한 나머지 연산은 숫자열이 문자보다 힘이 세다
+console.log('6' - 3)
+console.log('5' * 3)
+console.log('30' / 4)
+
 // * 문제 해결 방법 (문자 → 숫자 변환 후 연산)
-// * 증가, 감소 연산자 위치 (전/후)
+let input3 = '101', input4 = 8
+console.log(Number(input3) - Number(input4))
+console.log(Number(input3) * Number(input4))
+console.log(Number(input3) / Number(input4))
+
+{
+  // * 증가, 감소 연산자 위치 (전/후)
+let count = 5
+
+// 전위: 먼저 증가/감소 후 사용
+console.log(++count)  // 6 (count는 6이 됨)
+console.log(count)    // 6
+
+count = 5  // 초기화
+
+// 후위: 먼저 사용 후 증가/감소
+console.log(count++)  // 5 (출력 후 count가 6이 됨)
+  console.log(count)
+}   // 6
