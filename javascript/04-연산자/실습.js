@@ -84,27 +84,37 @@ x = 8
 console.log(x)
 
 // 더한 후, 할당
-x = x + 2
+//x = x + 2
+// 복합 할당 연산자(할당 + 산술 연산자)
+x += 2 // X에 2를 더해서 할당하라
 console.log(x)
 
 // 뺀 후, 할당
-x = x - 9
+//x = x - 9
+
+x -= 9
 console.log(x)
 
 // 곱한 후, 할당
-x = x * 2
+//x = x * 2
+
+x *= 2
 console.log(x)
 
 // 나눈 후, 할당
-x = x / 2
+//x = x / 2
+
+x /= 2
 console.log(x)
 
 // 나머지 후, 할당
-x = x % 3
+//x = x % 3
+x %= 3
 console.log(x)
 
 // 거듭제곱 후, 할당
-x = x ** 1000
+//x = x ** 1000
+x **= 1000
 console.log(x)
 
 // --------------------------------------------------------------------------
@@ -122,20 +132,21 @@ console.log(count)
 
 // 후 증가 (Post-increment)
 //count = count + 1
-console.log(count)
-
-count++
+console.log(count++)
 console.log(count)
 
 // 선 증가 (Pre-increment)
 
-++count
+console.log(++count)
 console.log(count)
 
 // 후 감소 (Post-decrement)
+console.log(count--)
+console.log(count)
 
 // 선 감소 (Pre-decrement)
-
+console.log(--count)
+console.log(count)
 
 
 
