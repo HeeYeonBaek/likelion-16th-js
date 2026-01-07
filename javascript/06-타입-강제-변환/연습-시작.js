@@ -14,33 +14,44 @@ const PRODUCT_3_QUANTITY = '1'
 
 // 첫 번째 상품의 소계를 계산하세요.
 // 출력 결과: 70000 (number)
-let product_1_subtotal
+let product_1_subtotal = Number(PRODUCT_1_PRICE) * Number(PRODUCT_1_QUANTITY)
+
+console.log(product_1_subtotal)
 
 // 두 번째 상품의 소계를 계산하세요.
 // 출력 결과: 144000 (number)
-let product_2_subtotal
+let product_2_subtotal = Number(PRODUCT_1_PRICE) * 2 + 1000 + Number(PRODUCT_2_PRICE) + Number(PRODUCT_3_PRICE)
+console.log(product_2_subtotal)
+
 
 // 세 번째 상품의 소계를 계산하세요.
 // 출력 결과: 25000 (number)
-let product_3_subtotal
+let product_3_subtotal = Number(PRODUCT_3_PRICE)
+console.log(product_3_subtotal)
+
 
 // 전체 상품의 합계를 계산하세요.
 // 출력 결과: 239000 (number)
-let cart_total
+let cart_total = Number(PRODUCT_1_PRICE * Number(PRODUCT_1_QUANTITY)) + Number(PRODUCT_2_PRICE * Number(PRODUCT_2_QUANTITY)) + Number(PRODUCT_3_PRICE * Number(PRODUCT_3_QUANTITY))
+console.log(cart_total)
 
 // 배송비를 추가하세요. (3000원, 문자열로 입력됨)
 const SHIPPING_FEE = '3000'
 // 출력 결과: 242000 (number)
-let total_with_shipping
+let total_with_shipping = cart_total + Number(SHIPPING_FEE)
+console.log(total_with_shipping)
 
 // 회원 할인율을 적용하세요. (10% 할인, 문자열로 입력됨)
 const MEMBER_DISCOUNT_RATE = '0.1'
 // 출력 결과: 24200 (number)
-let discount_amount
+let discount_amount = total_with_shipping * Number(MEMBER_DISCOUNT_RATE)
+console.log(discount_amount)
 
 // 최종 결제 금액을 계산하세요.
 // 출력 결과: 217800 (number)
-let final_payment
+let final_payment = total_with_shipping - discount_amount
+console.log(final_payment)
+
 
 // 포인트 적립액을 계산하세요. (최종 금액의 1%, 문자열로 입력됨)
 const POINT_RATE = '0.01'
