@@ -8,10 +8,13 @@ const BORROWED_TODAY = '12권'  // 오늘 대출된 책
 const RETURNED_TODAY = '8권'   // 오늘 반납된 책
 
 // BORROWED_TODAY를 숫자로 변환하세요.
+parseInt(BORROWED_TODAY)
 
 // RETURNED_TODAY를 숫자로 변환하세요.
+parseInt(RETURNED_TODAY)
 
 // 현재 대출 가능한 책의 수를 계산하세요.
+TOTAL_BOOKS -= parseInt(BORROWED_TODAY)
 
 // 대출 가능한 책이 100권 이상인지 확인하세요.
 
