@@ -13,15 +13,33 @@
 
 // 일반 함수 표현식으로 sum 함수 정의 (매개변수 x, y / function 키워드 사용)
 
+const sum = function (x, y) {
+  return parseFloat(x) + parseFloat(y)
+}
+
+console.log(sum(10, 40))
+console.log(sum('10', '20px'))
+
 // 화살표 함수 표현식으로 add 함수 정의 (매개변수 x, y / => 기호 사용)
 
+
+// 함수 선언문
+// const add = function (x, y) {
+//   return parseFloat(x) + parseFloat(y)
+// }
+
+// 화살표 함수 표현식
+const add = (x, y) => {
+  return parseFloat(x) + parseFloat(y)
+}
+ 
 // sum 함수와 add 함수를 각각 호출하여 결과 콘솔 출력
 
 // 설명:
-// 화살표 함수는 function 키워드를 제거하고, 
+// 화살표 함수는 function 키워드를 제거하고,
 // 매개변수와 본문 사이에 '=>'를 추가하여 작동합니다.
 
-// 출력 결과: 
+// 출력 결과:
 // 두 함수 모두 동일한 덧셈 결과 출력
 
 
@@ -33,13 +51,45 @@
 // 빈 소괄호 () 또는 밑줄 _ 을 사용하여 log 함수 정의 ('로그' 출력)
 // log 함수 호출
 
+// 소괄호를 사용할 경우
+const helloJS = () => {
+  return 'hello JavaScript!✨'
+}
+
+// 언더스코어(밑줄)을 사용할 경우
+const JShello = _ => {
+  return '안녕! 자바스크립트 ✨'
+}
+
+// 달러($) 기호도 가능은 하지만, 거의 안씀
+const hiJS = $ => {
+  return '하이 자바스크립트! ✨'
+}
+
+console.log(helloJS('어떤 값'))
+
 // 2. 매개변수가 1개인 경우
 // 소괄호를 생략하고 매개변수(value)만 작성하여 double 함수 정의 (값 2배 반환)
 // double 함수 호출 및 결과 출력
 
+const double = value => {
+  return value ** 2
+}
+
+console.log(double(89))
+console.log(double(179))
+
 // 3. 매개변수가 2개 이상인 경우
 // 소괄호를 반드시 포함하여 multiply 함수 정의 (두 값의 곱 반환)
 // multiply 함수 호출 및 결과 출력
+// 매개변수가 1개일 때만 소괄호 생략이 가능
+
+const multiply = (z, k) => {
+  return Number(z) * Number(k)
+}
+
+console.log(multiply('5', 120))
+console.log(multiply(9. -3))
 
 // 설명:
 // 매개변수가 1개일 때만 소괄호를 생략할 수 있어 코드가 더 간결하게 작동합니다.
