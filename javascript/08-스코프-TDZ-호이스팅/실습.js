@@ -25,19 +25,34 @@ console.log(garden)
   console.log(blockVariable)
 }
 
-console.log(blockVariable)
+// console.log(blockVariable)
 
+// 함수 스코프
 // 함수 myHouse 선언
-// - 지역 변수 desk 선언 ('책상 위의 노트북')
-// - 전역 변수 garden, 지역 변수 desk 콘솔에 출력
+
+function myHouse() {
+  // - 지역 변수 desk 선언('책상 위의 노트북')
+  const desk = '책상 위의 노트북'
+  // - 전역 변수 garden, 지역 변수 desk 콘솔에 출력
+
+  console.log('garden:', garden)
+  console.log('desk:', desk)
+}
+
+myHouse()
+
 
 // 전역에서 garden, desk 변수 값 콘솔에 출력
 // - 함수 내부(지역)에서는 외부(전역) 변수에 접근할 수 있습니다.
 // - 외부(전역)에서는 함수 내부(지역) 변수에 접근할 수 없습니다. (ReferenceError)
 
 // garden 출력 결과
-
+// console.log(garden)
 // desk 출력 결과
+// console.log(desk)
+
+
+
 
 
 // --------------------------------------------------------------------------
@@ -45,13 +60,31 @@ console.log(blockVariable)
 // --------------------------------------------------------------------------
 
 // 함수 outer 선언
-// - 지역 변수 livingRoom 선언 ('거실의 소파')
-// - 내부 함수 inner 선언
-//   - 지역 변수 myRoom 선언 ('내 방의 침대')
-//   - 전역 변수 garden, 상위 함수 변수 livingRoom, 지역 변수 myRoom 출력
-// - 내부 함수 inner 호출
+const outer = function () {
+  // - 지역 변수 livingRoom 선언 ('거실의 소파')
+  const livingRoom = '거실의 소파'
+  // - 내부 함수 inner 선언
+  const inner = function inner() {
+    //   - 지역 변수 myRoom 선언 ('내 방의 침대')
+     const myRoom = '내 방의 침대'
 
+    //   - 전역 변수 garden, 상위 함수 변수 livingRoom, 지역 변수 myRoom 출력
+    console.log(garden)
+    console.log(livingRoom)
+    console.log(myRoom)
+  }
+  // - 내부 함수 inner 호출
+  inner()
+
+  //   - 전역 변수 garden, 상위 함수 변수 livingRoom, 지역 변수 myRoom 출력
+    console.log(garden)
+    console.log(livingRoom)
+    console.log(myRoom)
+
+
+}
 // 함수 outer 호출
+outer()
 
 // 설명: 변수를 찾을 때 현재 범위에 없으면, 점점 더 바깥 범위로 나가며 찾습니다.
 // 출력 결과:
