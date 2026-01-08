@@ -119,4 +119,4 @@ console.log('id2:', id2, 'id2의 타입:', typeof id2)
 console.log('id1.description:', id1.description)
 console.log('id2.description:', id2.description)
 // 질문: 같은 'id'로 만들었는데 id1과 id2는 같을까요, 다를까요?
-// 답: 
+// 답: 다르다
