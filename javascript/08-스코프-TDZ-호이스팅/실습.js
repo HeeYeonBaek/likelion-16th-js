@@ -12,6 +12,22 @@
 // 마치, 해당 영역이ㅡ 가장 상위로 함수 선언문으 끌어 올린 것 처럼 보이죠?
 // 그래서 호이스팅(Hoisting)이라고 불러요.
 
+// var 변수는 선언과 초기화가 동시 진행 (JS 엔진이 undefined 설정)
+// var say Bye
+
+function aFn() {
+  let = 'a'
+
+  function bFn() {
+    console.log(a)
+    let = 'b'
+  }
+
+  console.log(b)
+}
+
+//console.log(a)
+
 
 // --------------------------------------------------------------------------
 // 스코프 (Scope) - 전역과 지역
@@ -160,7 +176,7 @@ function sayHello() {
 // --------------------------------------------------------------------------
 
 // 함수 표현식 선언 전, sayBye 호출 (ReferenceError 발생)
-console.log(sayBye())
+//console.log(sayBye())
 
 // const 키워드를 사용해 sayBye 변수에 함수 표현식 할당 ('잘 가! JavaScript 👋' 출력)
 // let, const 선언 시, 메모리에 이름만 등록 [TDZ, 안전펜스] 초기화 [TDZ 해제]
@@ -185,3 +201,40 @@ console.log(sayBye())
 // 1. 안쪽 스코프에서는 바깥쪽을 볼 수 있지만, 바깥쪽에서는 안쪽을 볼 수 없습니다.
 // 2. 호이스팅은 선언을 최상단으로 끌어올린 것처럼 작동하는 현상입니다. (함수 선언문은 즉시 사용 가능)
 // 3. let과 const는 TDZ(일시적 사각지대) 덕분에 선언 전에 사용하는 실수를 막아줍니다.
+
+
+//실습 문제 풀어보기
+
+let name = '바깥 세상'
+
+function myArea() {
+  let name = '내 방'
+  console.log('1번', name)
+}
+
+console.log('2번', name)
+myArea()
+
+
+console.log('시작합니다!')
+
+let apple = '사과'
+
+{
+  //console.log(apple)
+  let apple = '청사과'
+}
+
+console.log('끝났습니다!')
+
+dance()
+
+//sing()
+
+function dance() {
+  console.log('춤을 춥니다.')
+}
+
+const sing = function () {
+  console.log('노래를 부릅니다!')
+}
