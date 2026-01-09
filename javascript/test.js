@@ -55,6 +55,9 @@ console.log(actorName > actressName)
 // 색상 값(일상, 10진수) → 색상 코드(컴퓨터, 16진수) 변환
 const red = 255, green = 120, blue = 30
 
+
+//----------------------------------------------------------
+
 let hexCode = '#'
 const redHexValue = red.toString(16).padStart(2, '0')
 console.log(redHexValue)
@@ -63,10 +66,13 @@ console.log(greenHexValue)
 const blueHexValue = blue.toString(16).padStart(2, '0')
 console.log(blueHexValue)
 
-hexCode += redHexValue
-hexCode += greenHexValue
-hexCode += blueHexValue
+console.log(hexCode += redHexValue)
+console.log(hexCode += greenHexValue)
+console.log(hexCode += blueHexValue)
 
+console.log(hexCode)
+
+//----------------------------------------------------------
 
 let redColor = red.toString(16).padStart(2,'0') 
 let greenColor = green.toString(16).padStart(2,'0') 
@@ -75,3 +81,50 @@ let blueColor = blue.toString(16).padStart(2, '0')
 const tempHexCode = '#' + redColor + greenColor + blueColor
 
 console.log(hexCode)
+
+//----------------------------------------------------------
+
+colorCode = hexCode + red.toString(16).padStart(2, '0')
+colorCode = hexCode + green.toString(16).padStart(2, '0')
+colorCode = hexCode + blue.toString(16).padStart(2, '0')
+
+console.log(colorCode)
+
+
+const n1 = 0,  n2 = n1, 
+      n3 = 20,  n4 = 9, 
+      n5 = 11, n6 = n4, 
+      n7 = 8, n8 = 3.14
+
+const anwser = (n1 / n2 + n4- n3) * n5 * n8 / (n6 - n7)
+console.log(anwser) 
+
+
+const convertUsdToKRW = (USD, exchange) => {
+  const UsdToKRW = parseFloat(USD) * parseFloat(exchange) + '원'
+
+  return UsdToKRW
+}
+
+console.log(convertUsdToKRW(120.50, 1480))
+console.log(convertUsdToKRW('120.50', '1480'))
+console.log(convertUsdToKRW('120.50달러', '1480원'))
+
+
+console.log('9.99' === '9.99')
+
+const y = 10
+
+console.log('120' * y)
+
+
+console.log(true + 5)
+console.log(false + 5)
+console.log(Number(true))
+console.log(Number(false))
+console.log(4 * true)
+console.log(4 * false)
+console.log(4 - true)
+console.log(4 - false)
+console.log(4 / true)
+console.log(4 / false)
