@@ -100,6 +100,17 @@ console.log(!disAgreeAlert)
 
 */
 
+function memberList(rank, name) {
+  const customerMessage = {
+    'VIP' : '🌟 ' + rank + name + '님, 특별한 혜택이 준비되어 있습니다!',
+    'Friend' : '안녕하세요 ' + rank + name + '! 즐거운 쇼핑 되세요'
+  }
+
+  return customerMessage[rank]
+}
+ 
+console.log(memberList('VIP', '희연'))
+console.log(memberList('Friend', '정수'))
 
 
 
@@ -124,7 +135,6 @@ console.log(!disAgreeAlert)
 
 
 
-
 // 3. 비밀번호 유효성 검사
 // 비밀번호 문자열을 입력받아 유효성 검사를 수행하는 함수를 작성합니다.
 
@@ -136,6 +146,17 @@ console.log(!disAgreeAlert)
 - 위 조건을 모두 만족하면 true, 아니면 false 반환
 
 */
+
+const checkedPassword = (password) => {
+
+  // 8자 이상이거나 20자 이하
+  let checkedPassword = password.length >= 8 && password.length <= 20
+  return checkedPassword
+
+ }
+
+console.log(checkedPassword('4590678409'))
+console.log(checkedPassword('4590678409ddkljgkleioiu'))
 
 
 // 4. 포인트 적립 계산
@@ -151,6 +172,31 @@ console.log(!disAgreeAlert)
  
  [예] VIP 회원이 100,000원 결제 시 → 5,000 포인트 적립
 */
+
+function addToPoint(memberRank, buyingPoint) {
+  let vipPoint = 5 
+  let goldPoint = 3
+  let silverPoint = 1
+  let basicPoint = 0.5
+
+  let nomalRank = memberRank.toLowerCase()
+
+  let chargePoint = {
+    vip: memberRank + buyingPoint * vipPoint / 100,
+    gold: memberRank + buyingPoint * goldPoint / 100,
+    silver: memberRank + buyingPoint * silverPoint / 100,
+    basic : memberRank + basicPoint * basicPoint / 100
+}
+
+return chargePoint[nomalRank]
+}
+
+console.log(addToPoint('vip', 100000))
+console.log(addToPoint('gold', 50000))
+console.log(addToPoint('silver', 100000))
+console.log(addToPoint('basic', 100000))
+
+ 
 
 
 // 5. 영화 티켓 가격 계산
@@ -169,3 +215,23 @@ console.log(!disAgreeAlert)
  [예] 3D 영화, 조조 상영, 2명 관람 → 27,200원 결제
 
 */
+
+
+const movieTicket = (movieType, viewPerson, viewTime) => {
+  //  [예] 3D 영화, 조조 상영, 2명 관람 → 27,200원 결제
+
+  const moviePrice = {
+    '일반영화' : 14000,
+    '3d영화': 17000,
+    'IMAX' : 20000
+  }
+
+
+  let Price = moviePrice[movieType];
+
+  let discountMovie = viewTime === '조조' ? 0.8 : 1
+  
+  return Price * discountMovie * viewPerson
+
+}
+console.log(movieTicket('IMAX', 3, '조조'))
