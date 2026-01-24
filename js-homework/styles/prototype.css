@@ -1,0 +1,232 @@
+/* JavaScript hide 처리에 사용 */
+.hide{
+  display: none;
+}
+
+ul,li{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+p{
+  margin: 0;
+}
+
+body{
+  background: #eeeeee;
+  position: relative;
+
+  .container{
+    inline-size: 568px;
+    block-size: 473px;
+    background: var(--white);
+    border-radius: 12px;
+    position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%);
+
+    .tapMenuList{
+      display:flex;
+      flex-flow: nowrap row;
+      justify-content: space-between;
+      align-items: center;
+      inline-size: 100%;
+      block-size: 73px;
+      margin-block-start: 0;
+
+      .tapBtn{
+        display:flex;
+        flex-flow: nowrap column;
+        align-items: center;
+        justify-content: center;
+        padding-block: 12px;
+        inline-size: 100%;
+      }
+
+      li{
+        display:flex;
+        flex-flow: nowrap column;
+        align-items: center;
+        text-align: center;
+        margin: 0 auto;
+        color: var(--deactivate-color);
+        inline-size: 100%;
+        cursor: pointer;
+
+        .icons{
+          display:flex;
+          flex-flow: nowrap row;
+          justify-content: center;
+          align-items: center;
+          inline-size: 25px;
+          block-size: 25px;
+          margin-block-end: 4px;
+        }
+
+        .icons img{
+          display: block;
+          transition: filter 0.3s;
+          filter: var(--active-color);
+        }
+        span{
+          font-size: 14px;
+          font-weight: 700;
+        }
+      }
+    }
+
+    .tapMenuList li:hover{
+      color: var(--active-color);
+      border-block-end: 3px solid var(--active-color);
+    }
+
+  
+
+  .categoryBlock{
+      padding: 24px;
+}
+    .tapMenuName{
+      color: var(--menuTitle);
+      font-size: 18px;
+      font-weight: 700;
+      margin-block-start: 0;
+    }
+
+    .accountList{
+      margin-block: 10px;
+      padding: 24px 20px;
+      border: var(--border);
+      border-radius: 12px;
+
+      li{
+        padding-block-end: 10px;
+      }
+
+      .accountTitle{
+        font-size: 13px;
+        font-weight: 700;
+        color: #808080;
+      }
+
+      .accountNumber{
+        font-size: 15px;
+        font-weight: 500;
+        color: var(--black);
+      }
+    }
+
+    .portfolioList{
+      display:flex;
+      flex-flow: nowrap row;
+      justify-content: space-between;
+      border: var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      margin-block: 12px;
+
+      .categoryName p{
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--listTitle)
+      }
+
+      .categoryName span{
+        font-size: 12px;
+        font-weight: 400;
+        color: var(--sub);
+      }
+
+      .portfolioCharge{
+        display:flex;
+        flex-flow: nowrap column;
+        align-items: flex-end;
+      }
+
+      .portfolioCharge p{
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--black);
+      }
+    }
+
+    .transactionHistory{
+      display:flex;
+      flex-flow: nowrap row;
+      justify-content: space-between;
+      align-items: center;
+       margin-block: 12px;
+      padding: 20px;
+      border: var(--border);
+      border-radius: 12px;
+
+      .transactionList p{
+        font-size: 16px;
+        font-weight: 700;
+        color: #546C84;
+      }
+
+      .transactionList .transactionDate{
+        font-size: 12px;
+        font-weight: 400;
+        color: var(--sub);
+      }
+    }
+
+    .creditCardList{
+      display:flex;
+      flex-flow: nowrap column;
+      margin-block: 12px;
+      padding: 20px;
+      border-radius: 12px;
+      color: var(--white);
+    }
+
+    .transactionCharge{
+      display:flex;
+      flex-flow: nowrap row;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .amonutNumber{
+      display:flex;
+      flex-flow: nowrap column;
+
+      span{
+        font-size: 12px;
+        font-weight: 400;
+      }
+
+      .cardCharge{
+        font-size: 20px;
+        font-weight: 700;
+      }
+    }
+
+    .active{
+      background-color: var(--active-color);
+    }
+
+    .deactivate{
+      background-color: var(--deactivate-background);
+      border-radius: 12px;
+
+      .bankBrand{
+        font-size: 14px;
+        font-weight: 700;
+      }
+
+     
+    }
+
+     .cardNumber{
+        font-size: 20px;
+        font-weight: 400;
+        padding-block: 30px;
+        letter-spacing: 0.3rem;
+      }
+  }
+}
+

@@ -1,0 +1,97 @@
+/*
+
+내가 짠거
+
+const viewBtn = document.querySelectorAll('viewBtn')
+const contents = document.querySelectorAll('accordion__content')
+console.log(viewBtn)
+
+viewBtn.addEventListener('click', (hoverBox) => {
+  if (hoverBox === true) {
+    contents.styles = 'display:block'
+  } else {
+    contents.styles= 'display:none'
+  }
+})
+*/
+
+//-------------------------------------------------------------------------
+// 첫번째 아코디언을 조작할 때
+//-------------------------------------------------------------------------
+
+/*
+{
+// .accordion 클래스 이름으로 문서의 객체를 참조
+const firstAccordion = document.querySelector('.accordion')
+// console.log(firstAccordion)
+
+// 찾은 문서의 객체에 클릭 이벤트 리스너 추가
+firstAccordion.addEventListener('click', () => {
+  // 아코디언 패널 toggle(열기/닫기)'
+  firstAccordion.classList.toggle('is-open')
+
+})
+}
+*/
+
+//-------------------------------------------------------------------------
+// 두번째 아코디언을 조작할 때
+//-------------------------------------------------------------------------
+
+/*
+const secondAccordion = document.querySelector('.accordion:nth-child(2)')
+// console.log(secondAccordion)
+
+secondAccordion.addEventListener('click', () => {
+  secondAccordion.classList.toggle('is-open')
+})
+*/
+
+//-------------------------------------------------------------------------
+// 모든 아코디언을 조작(반복 처리)
+//-------------------------------------------------------------------------
+
+// .accordion__container 클래스 이름으로 문서의 객체를 참조
+  const accordionContainer = document.querySelector('.accordion__container')  
+
+  // 반복되는 코드
+  // .accordion 클래스 이름으로 문서의 객체를 참조
+  // const accordion = accordionContainer.querySelector('.accordion:nth-child(1)')
+
+  // 찾은 문서의 객체에 클릭 이벤트 리스너 추가
+  // accordion.addEventListener('click', () => {
+    // 아코디언 콘텐츠 토글(열기/닫기)
+    // accordion.classList.toggle('is-open')
+  // })
+
+  // for 문으로 반복 처리
+  const accordions = accordionContainer.querySelectorAll('.accordion') // NodeList { item(), forEach(), length }
+  // console.log(accordions) // NodeList [div.accordion, div.accordion, div.accordion, div.accordion]
+
+  for (let index = 0, total = accordions.length; index < total; index += 1) {
+    const accordion = accordions.item(index) // accordions[index]
+    const accordionButton = accordion.querySelector('.accordion__header button')
+    accordionButton.addEventListener('click', () => {
+      console.log('for 문에서 연결된 이벤트 리스너')
+      // accordion.classList.toggle('is-open')
+    })
+  }
+
+  // for...of 문으로 반복 처리
+  for (const accordion of accordions) {
+    const accordionButton = accordion.querySelector('.accordion__header button')
+    accordionButton.addEventListener('click', () => {
+      console.log('for...of 문에서 연결된 이벤트 리스너')
+      // accordion.classList.toggle('is-open')
+    })
+  }
+  
+  // forEach 메서드로 반복 처리
+  accordions.forEach((accordion) => {
+    const accordionButton = accordion.querySelector('.accordion__header button')
+    accordionButton.addEventListener('click', () => {
+      console.log('forEach 메서드에서 연결된 이벤트 리스너')
+      accordion.classList.toggle('is-open')
+    })
+  })
+  

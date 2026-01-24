@@ -1,0 +1,35 @@
+/* 
+  Sass(전처리기)
+  @mixin 믹스인이름($매개변수){
+    //스타일로직
+  }
+
+  @mixin params(){
+    font-size : 1rem;
+    line-height: 1.5;
+    color: #121212;
+    letter-spacing: -0.1px;
+    }
+ */
+  @mixin params(){
+    font-size : 1rem;
+    line-height: 1.5;
+    color: #121212;
+    letter-spacing: -0.1px;
+    }
+
+
+p{
+  font-size : 1rem;
+  line-height: 1.5;
+  color: #121212;
+  letter-spacing: -0.1px;
+}
+
+section p{
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #121212;
+  letter-spacing: -0.1px;
+  margin-block-end: 20px;
+}

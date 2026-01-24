@@ -1,0 +1,28 @@
+:root{
+  --black : #000;
+  --white: #fff;
+  --blue: #2b78ED;
+  --active-color: #055fea;
+  --deactivate-color : #939393;
+  --deactivate-background: #727F8E;
+  --green: #49B36E;
+  --red: #D4392C;
+  --menuTitle:  #404040;
+  --listTitle: #6b8094;
+  --sub: #8F9AA5;
+  --border:1px solid #dedede;
+}
+
+/* 접근성 관련 CSS */
+.sr-only {
+  position: absolute;
+  background: red;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  white-space: nowrap;
+  margin: -1px;
+  clip-path: inset(50%);
+  padding: 0;
+  border-width: 0;
+}

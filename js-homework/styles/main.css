@@ -1,0 +1,120 @@
+:root{
+  --title-text-color: #333;
+  --defalt-text-color: #000;
+  --background-color: #d5f7ff;
+}
+
+
+/* 접근성 관련 CSS */
+.sr-only {
+  position: absolute;
+  background: red;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  white-space: nowrap;
+  margin: -1px;
+  clip-path: inset(50%);
+  padding: 0;
+  border-width: 0;
+}
+
+
+.component{
+  position: relative;
+  background: var(--background-color);
+}
+
+.menuBox{
+  inline-size: 384px;
+  block-size: 372px;
+  padding-inline: 10px;
+  background: #fff;
+  border-radius: 10px;
+
+  .menuInnerBox{
+  inline-size: 384px;
+  block-size: 372px;
+}
+  
+/* 추천게임 */
+  .categoryTitle{
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 1.25rem;
+    font-weight: 700;
+
+    p{
+      margin: 0;
+    }
+  }
+
+  .gameList{
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 0px 20px;
+    overflow: hidden;
+
+    
+    .gameName{
+      margin: 0;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--defalt-text-color);
+    }
+
+    .gameComment{
+      margin: 0;
+      font-size: 14px;
+      letter-spacing: -0.14px;
+    }
+
+    .gameGenre{
+      margin: 0;
+      font-size: 14px;
+      color: rgba(0, 0, 0, 0.5);
+    }
+  }
+
+  .page{
+    display:flex;
+    flex-flow: nowrap row;
+    justify-content: center;
+    margin-block-start: 14px;
+
+    .pageBox{
+      display:flex;
+      flex-flow: nowrap row;
+      align-items: center;
+      gap: 12px;
+
+      .preyButton{
+        background-image: url(../image/prey.svg);
+        inline-size: 40px;
+        block-size: 40px;
+        
+      background-color: #fff;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      border: none;
+      cursor: pointer;
+      }
+
+     .nextButton{
+       inline-size: 40px;
+       block-size: 40px;
+       background-color: #fff;
+        background-image: url(../image/next.svg);
+         background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      border: none;
+      cursor: pointer;
+      }
+    }
+  }
+}

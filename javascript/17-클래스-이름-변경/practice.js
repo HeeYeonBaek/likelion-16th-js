@@ -1,0 +1,101 @@
+// 문서에서 .practice 요소 찾기 (변수에 참조: 기억하기 위해)
+const practice = document.querySelector('.practice')
+// console.log(practiceElement)
+
+// 실습 진행을 위한 메서드 이름 변수 작성
+let methodName = 'add', activeClassName = 'text-indigo-600'
+
+// .practice .item-add 요소 찾기 (기억된 상위 요소를 통해)
+const itemAdd = practice.querySelector('.item-add')
+// console.log(itemAdd)
+
+// itemAdd 요소(객체)가 활성 클래스 이름을 가지고 있다면?
+// 활성 클래스 이름을 제거해야 하니까 methodName 값을 'remove'로 변경
+if (itemAdd.classList.contains(activeClassName)) methodName = 'remove'
+// console.log('methodName =', methodName)
+
+
+itemAdd.classList[methodName](activeClassName)
+
+
+itemAdd.classList.add('text-indigo-600')
+
+
+
+
+// -----------------------------------------------------------------------------
+// 2. 'bg-yellow-100' 클래스를 제거해 노란 배경을 없애보세요!(제거)
+// -----------------------------------------------------------------------------
+
+const itemRemove = practice.querySelector('.item-remove')
+// console.log(itemRemove)
+
+itemRemove.classList.remove('bg-yellow-100')
+
+
+
+// -----------------------------------------------------------------------------
+// 3. 한 번에 글자색, 두께, 배경색을 모두 바꿔보세요! (연쇄조작)
+// -----------------------------------------------------------------------------
+
+const itemMultiple = practice.querySelector('.item-multiple')
+console.log(itemMultiple)
+
+// 모두 한번에 적용
+itemMultiple.classList.add('bg-yellow-100', 'text-green-500', 'font-semibold')
+
+
+// -----------------------------------------------------------------------------
+// 4. "text-red-500"을 "text-green-500"으로 교체해 보세요! (교체)
+// -----------------------------------------------------------------------------
+
+const itemReplace = practice.querySelector('.item-replace')
+console.log(itemReplace)
+
+// text-red-500 제거
+// text-green-500 추가
+
+// itemReplace.classList.remove('text-red-500')
+// itemReplace.classList.add('text-green-500')
+
+itemReplace.classList.replace('text-red-500', 'text-green-500')
+
+
+// -----------------------------------------------------------------------------
+// 5. 없는 클래스를 다른 클래스로 바꾸려 하면 어떻게 될까요? (안정성)
+// -----------------------------------------------------------------------------
+
+
+const itemSafeReplace = practice.querySelector('.item-safe-replace')
+
+// console.log(itemSafeReplace)
+
+const result = itemSafeReplace.classList.replace('unknown-class', 'text-blue-500')
+
+if (!result) {
+  console.warn('해당 요소에 없는 클래스 이름이에요! (unknown-class)')
+}
+
+
+// -----------------------------------------------------------------------------
+// 6. "text-indigo-600" 클래스가 있는지 확인하세요! (포함 여부 확인)
+// -----------------------------------------------------------------------------
+
+
+const itemContains = practice.querySelector('.item-contains')
+const hasTextIndig600Color = itemContains.classList.contains('text-indigo-600')
+
+
+// -----------------------------------------------------------------------------
+// 7. "text-indigo-600" 클래스가 있다면 제거하고, 없다면 추가해보세요. (토글)
+// -----------------------------------------------------------------------------
+
+const itemContainsTarget = practice.querySelector('.item-contains-target')
+
+itemContainsTarget.classList.toggle('text-indigo-600')
+
+// if (itemContainsTarget.classList.contains('text-indigo-600')) {
+//   itemContainsTarget.classList.remove('text-indigo-600')
+// } else {
+//   itemContainsTarget.classList.add('text-indigo-600')
+// }
