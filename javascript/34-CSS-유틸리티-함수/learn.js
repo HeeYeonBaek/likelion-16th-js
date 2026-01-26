@@ -308,6 +308,96 @@ console.groupCollapsed('css() 함수 작성')
 
 // 이곳에 코드를 작성하세요.
 
+// 읽기 (인자 2개)
+
+{
+  const tipBoxHeading = document.querySelector('.tip-box h3')
+
+  // 스타일 설정(쓰기, 수정)
+  setStyle(tipBoxHeading, 'font-size', 32 + 'px')
+  
+  // 스타일 확인(읽기, 조회)
+  const tipBoxHeadingFontSize = getStyle(tipBoxHeading, 'font-size')
+  console.log(tipBoxHeadingFontSize)
+
+  // 스타일 삭제
+  removeStyle(tipBoxHeading, 'font-size')
+
+  function getStyle(element, propertyName) {
+    return getComputedStyle(element).getPropertyValue(propertyName)
+  }
+
+  function setStyle(element, propertyName, propertyValue) {
+    element.style.setProperty(propertyName, propertyValue)
+  }
+
+  function removeStyle(element, propertyName) {
+    element.style.removeProperty(propertyName)
+  }
+}
+
+
+// 쓰기 (인자 3개)
+// const el = css(element, propertyName, propertyValue)
+// 유틸리티를 통합한 css 함수를 사용하는 경우 (다형성)
+// - 읽기 (인자 2개)
+// - 쓰기 (인자 3개)
+// - 삭제 (인자 3개, 값이 null)
+{
+  // 이곳에 코드를 작성하세요.
+  const code = document.querySelector('.code-example code')
+  
+  // 다형성 특징을 가지는 통합 유틸리티 함수 css() 활용
+
+  // 쓰기
+  css(code, 'color', '#34a853')
+  css(code, 'background-color', '#095325')
+
+  // 읽기
+  const codeColor = css(code, 'color')
+  console.log(codeColor)
+  const codeBGColor = css(code, 'background-color')
+  console.log(codeBGColor)
+
+  // 삭제
+  css(code, 'color', null)
+  css(code, 'background-color', null)
+
+
+
+  function css(element, propertyName, propertyValue) {
+    // [읽기] 마지막 인자가 undefined인 경우
+    if (propertyValue === undefined) {
+      return getStyle(element, propertyName)
+    }
+    
+    // [삭제] 마지막 인자가 null인 경우
+    if (propertyValue === null) {
+      return removeStyle(element, propertyName)
+    }
+
+    // [쓰기] 그 외 나머지 경우
+    setStyle(element, propertyName, propertyValue)
+  }
+
+
+  function getStyle(element, propertyName) {
+    return getComputedStyle(element).getPropertyValue(propertyName)
+  }
+
+  function setStyle(element, propertyName, propertyValue) {
+    element.style.setProperty(propertyName, propertyValue)
+  }
+
+  function removeStyle(element, propertyName) {
+    element.style.removeProperty(propertyName)
+  }
+}
+// 삭제 (인자 3개, 값이 null)
+// const el = css(element, propertyName, propertyValue)
+
+
+
 console.groupEnd()
 
 // --------------------------------------------------------------------------
