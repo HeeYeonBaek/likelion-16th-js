@@ -56,6 +56,18 @@ console.groupCollapsed('3. 가상 요소 스타일 읽기 (::before)')
 
 // 이곳에 코드를 작성하세요.
 
+console.log(window.getComputedStyle === getComputedStyle)
+
+// CSStyleDeclaration 함수가 실행된 시점의 스냅샷(Snapshot) 데이터
+const pseudoStyles = getComputedStyle(sizeUpButton, '::after')
+console.log(pseudoStyles)
+
+console.log(pseudoStyles.getPropertyValue('content'))
+
+console.log(pseudoStyles.getPropertyValue('font-size'))
+console.log(pseudoStyles.fontSize)
+console.log(pseudoStyles['font-size'])
+
 
 console.groupEnd()
 
