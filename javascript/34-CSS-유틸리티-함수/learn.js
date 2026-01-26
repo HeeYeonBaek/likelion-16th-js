@@ -187,6 +187,28 @@ console.groupCollapsed('setStyle() 함수 작성')
   }
 }
 
+// 방어적 프로그래밍 + 매서드 체이닝
+
+{
+  setStyle(document.body)
+  setStyle(document.body,'padding')
+  setStyle(document.body, 'padding', '30px')
+
+  function setStyle(element, propName, propValue) {
+    if (element === null || element.nodeType !== document.ELEMENT_NODE) {
+      console.warn('element 인자로 전달되는 것은 요소 노드가 아닙니다.')
+      return null
+    }
+
+    if (!propName || !propValue/*null or undefined, '', 0, NaN */) {
+      console.warn('propName 또는 propValue 인자는 유요한 값 전달이 필요합니다.')
+      return null
+    }
+
+    element.style.setProperty(propName, propValue)
+  }
+}
+
 console.groupEnd()
 
 // [실습] removeStyle() 함수
