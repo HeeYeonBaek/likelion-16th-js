@@ -195,6 +195,7 @@ console.groupCollapsed('setStyle() 함수 작성')
   setStyle(document.body, 'padding', '30px')
 
   function setStyle(element, propName, propValue) {
+    // 유요한지 아닌지 검사(유효성 검사, Validation)
     if (element === null || element.nodeType !== document.ELEMENT_NODE) {
       console.warn('element 인자로 전달되는 것은 요소 노드가 아닙니다.')
       return null
@@ -217,7 +218,85 @@ console.groupEnd()
 // 3. 메서드 체이닝이 가능하도록 요소를 반환(return)하세요.
 console.groupCollapsed('removeStyle() 함수 작성')
 
-// 이곳에 코드를 작성하세요.
+
+  /*
+  // 이곳에 코드를 작성하세요.
+
+  // 내가 응용해 본거
+
+  const body = document.body
+  const main = body.querySelector('main')
+
+  function setStyle(element, propName, propValue) {
+    element.style.removeProperty(propName, propValue)
+  }
+
+  setStyle(body, 'background-color', 'tan')
+  setStyle(main, 'border-width', 2 + 'px')
+  setStyle(main, 'padding', 24 * 2 + 'px')*/
+
+
+
+// 기능 추상화 없이 사용할 경우
+{
+  const body = document.body
+  const main = body.querySelector('main')
+  // 요구사항:  특정 요소의 인라인 스타일을 삭제하고 싶다.
+
+  body.style.removeProperty('padding')
+  body.style.removeProperty('background-color')
+
+  main.style.removeProperty('border')
+  main.style.removeProperty('padding')
+
+
+}
+
+// 기능 추상화 하여 사용할 경우
+{
+  // 요구사항 : 특정 요소의 인라인 스타일을 삭제하고 싶다.
+  // 스타일 유틸리티 함수
+
+  const body = document.body
+  const main = body.querySelector('main')
+
+  function removeStyle(element, propertyName) {
+    element.style.removeProperty(propertyName)
+  }
+
+  removeStyle(body, 'padding')
+  removeStyle(body, 'background-color')
+  removeStyle(main, 'border')
+  removeStyle(main, 'padding')
+
+}
+
+
+// 기능 추상화 + 방어적 프로그래밍
+
+{
+
+  const body = document.body
+
+  function removeStyle(element, propertyName) {
+    if (!element || element.nodeType !== document.ELEMENT_NODE) {
+      console.warn('element 인자는 문서의 요소 노드여야 합니다.')
+      return null
+    }
+
+    if (!propertyName/* undefined | null */) {
+      console.warn('propertyName 인자가 유효하지 않은 값입니다.')
+      return null
+    }
+
+    element.style.removeProperty(propertyName)  
+  }
+
+  removeStyle()                // ❌ Error → ⚠️ Warning
+  removeStyle(body)            // ❌ Error → ⚠️ Warning
+  removeStyle(body, 'padding') // ✅
+}
+
 
 console.groupEnd()
 
