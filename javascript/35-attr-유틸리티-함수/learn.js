@@ -2,6 +2,12 @@
 // 실습: HTML 속성 및 데이터 속성 제어 (Attribute & Dataset)
 // --------------------------------------------------------------------------
 
+// <input data-active="yes" /> HTML 코드 (text)
+// HTML 문서 파싱(해석) 브라우저 
+// HTMLInputElement 생성자 -> input 객체 생성
+// input.dataset (DOMTokenMap { active: 'yes' })
+
+
 // [실습] 빌트인 속성 및 커스텀 속성 읽기 (getAttribute)
 // 1. 문서에서 'data-category' 속성을 가진 요소를 선택하세요.
 // 2. getAttribute()를 사용하여 'id', 'class', 'data-category' 값을 각각 콘솔에 출력하세요.
