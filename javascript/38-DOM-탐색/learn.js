@@ -8,7 +8,63 @@
 // 3. firstElementChild와 lastElementChild를 사용해 첫 번째와 마지막 자식에 접근하세요.
 console.groupCollapsed('아래로 탐색 실습')
 
-// 이곳에 코드를 작성하세요.
+const targetElement = document.querySelector('[data-target]')
+console.log(targetElement, targetElement.dataset.target)
+
+// 아래 방향으로 탐색 --------------------------------------------------
+// querySelector | querySelectorAll
+const captionElement = targetElement.querySelector('caption')
+// console.log(captionElement)
+
+const thElement = targetElement.querySelectorAll('th')
+// console.log(thElement)
+
+// childNodes | children
+console.log('childNodes\n', targetElement.childNodes) // -> NodeList
+
+// 텍스트 노드와 엘리먼트 노드가 섞인 NodeList에서
+// 엘리먼트 노드만 수집한 배열을 필요로 한다면?
+
+const onlyElement = []
+
+for (const node of targetElement.childNodes) {
+  if (node.nodeType === document.ELEMENT_NODE) {
+    onlyElement.push(node)
+  }
+}
+
+console.log(onlyElement)
+console.log('children\n', targetElement.children) // -> 요소만 가지고 올때, HTMLCollection
+
+// HTMLCollection -> [Array.from()] -> Array (배열화)
+// 배열 전환 (왜? 배열의 다양한 능력 활용하기 위해서!)
+
+const targetChlidrenArray = Array.from(targetElement.children)
+console.log('targetChlidrenArray\n'. targetChlidrenArray)
+
+
+
+// firstChild | lastChild | firstElementChild | lastElementChild
+
+console.log('firstChild\n', targetElement.firstChild) // #text
+console.log('lastChild\n', targetElement.lastChild) // #text
+
+
+function lastChild(parentElement) {
+  // parentElement <section>
+  // 조건과 상관 없이 먼저 해야할 일 (do)
+  // 1. 마지막 노드를 찾는다.
+  let lastNode = null
+  // 1. #text "너 요소니" No
+  // 2. <table> "너는 요소니?" Yes(반복문 중단)
+
+  do {
+    let lastNode = lastNode.nextElementSibling
+  } while (
+    lastNode.nodeType !== document.ELEMENT_NODE
+  )
+
+}
 
 console.groupEnd()
 
