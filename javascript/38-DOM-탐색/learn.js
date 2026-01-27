@@ -73,9 +73,35 @@ console.groupEnd()
 // 1. parentElement 속성을 사용하여 특정 요소의 직계 부모 노드에 접근하세요.
 // 2. closest() 메서드를 사용하여 상위 요소 중 특정 클래스를 가진 가장 가까운 조상을 찾으세요.
 // 3. 찾고자 하는 상위 요소가 없을 경우(null)를 대비한 방어적 코드(if문)를 작성하세요.
-console.groupCollapsed('위로 탐색 실습')
+console.group('위로 탐색 실습')
 
-// 이곳에 코드를 작성하세요.
+// parentNode | parentElement
+console.log(targetElement) // 기준점
+
+const parentNode = targetElement.parentNode 
+console.log('parentNode\n', parentNode)
+
+const parentElement = targetElement.parentElement 
+console.log('parentElement\n', parentElement)
+
+const rootElement = document.documentElement // 또다른 기준점 <HTML>
+console.log(rootElement.localName) // 'html
+console.log(rootElement.nodeName) // 'HTML'
+
+const rootParentNode = rootElement.parentNode 
+console.log('rootParentNode\n', rootParentNode)
+
+const rootParentElement = rootElement.parentElement 
+console.log('rootParentElement\n', rootParentElement)
+
+
+// 다른 기준점 <th>
+const anotherTarget = targetElement.querySelector('th:nth-of-type(2)')
+console.log(anotherTarget)
+
+const grandParent = anotherTarget.parentElement.parentElement.parentElement.parentElement
+console.log(grandParent)
+
 
 console.groupEnd()
 
