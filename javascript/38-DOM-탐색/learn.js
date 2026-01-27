@@ -99,9 +99,16 @@ console.log('rootParentElement\n', rootParentElement)
 const anotherTarget = targetElement.querySelector('th:nth-of-type(2)')
 console.log(anotherTarget)
 
-const grandParent = anotherTarget.parentElement.parentElement.parentElement.parentElement
+let grandParent = anotherTarget.parentElement.parentElement.parentElement.parentElement
 console.log(grandParent)
 
+
+// 가장 가까운(closest) 메서드
+grandParent = anotherTarget.closest('[data-taraget="here"]')
+console.log(grandParent)
+
+const unKnownParent = anotherTarget.closest('.unknown')
+console.log('unKnownParent\n', unKnownParent)
 
 console.groupEnd()
 
