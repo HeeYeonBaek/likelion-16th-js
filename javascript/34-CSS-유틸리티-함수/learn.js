@@ -352,7 +352,10 @@ console.groupCollapsed('css() 함수 작성')
   // 쓰기
   css(code, 'color', '#34a853')
   css(code, 'background-color', '#095325')
+  css(code, 'margin-block', '12px')
+  css(code, 'padding', '24px')
 
+ 
   // 읽기
   const codeColor = css(code, 'color')
   console.log(codeColor)
@@ -412,3 +415,80 @@ console.groupEnd()
 //    - 값을 주면? -> 스타일을 적용함 (쓰기)
 //    - null을 주면? -> 스타일을 지움 (삭제)
 // --------------------------------------------------------------------------
+
+
+
+// --------------------------------------------------------------------------
+// 함수 리팩토링(Refactoring) - 코드를 클린하게 만드는 목적
+// --------------------------------------------------------------------------
+{
+  const prose = document.querySelector('.prose')
+
+  const code = document.querySelector('.code-example code')
+
+  // getStyle
+  function getStyle(el, prop) {
+    return getComputedStyle(el).getPropertyValue(prop)
+  }
+
+
+  // setStyle
+  function setStyle(el, prop, value){
+    // el.style[prop] = value
+    el.style.setProperty(prop, value)
+  }
+
+
+  // removeStyle
+  function removeStyle(el, prop) {
+    // el.style[prop] = null
+    el.style.removeProperty(prop)
+  }
+
+// 세상에서 가장 사랑받는 라이브러리 JQuery 따라해보기!
+  // 우리의 css() 유틸리티 함수 리팩토링
+
+  css(code, {
+    'color': '#34a853',
+    'background-color': '#095325',
+    'margin-block': '12px',
+    'padding': '24px'
+  })
+
+
+  // css
+  function css(el, prop, value) {
+    console.log(el, prop, value)
+    // A and B and C
+    if (typeof prop === 'object' && prop && !Array.isArray(prop)) {
+      // null이 아니고, 타입이 객체인 것, 배열은 아닌 것 = 객체
+      // null, object{}, array[]
+
+      // 재귀(recursion) 함수 활용
+      // 객체를 순환(Loop Object) => for...in 문 
+      for (const key in prop) {
+        const value = prop[key] // 객체의 속성에 접근하는 방법 : 대괄호 표기법
+        console.log(key, value)
+        // 재귀: 나(함수)를 내가 다시 불러요!(호출)
+        // css()
+
+        css(el, key, value)
+
+        // 함수 종료
+        return
+      }
+
+
+    }
+
+    if (value === undefined) {
+      return getStyle(el, prop)
+    }
+
+    if (value === null) {
+      return removeStyle(el, prop)
+    }
+
+    setStyle(el, prop, value)
+  }
+}
