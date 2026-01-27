@@ -7,8 +7,37 @@
 // 2. 반환된 객체에서 top, left, width, height 값을 콘솔에 출력하는 로직을 작성하세요.
 console.groupCollapsed('getBoundingClientRect() 기본 측정')
 
-// 이곳에 코드를 작성하세요.
+const boxElement = document.querySelector('.box')
+const boundingRectButton = document.querySelector('.get-bounding-client-rect')
 
+boundingRectButton.addEventListener('click', () => {
+  const boxRact = boxElement.getBoundingClientRect()
+  console.log(boxRact)
+})
+
+// 난수(random inteager)를 반환하는 함수(추상화)
+function getRandomInt(min, max) {
+ return Math.floor(Math.random() * (max-min)) + min
+}
+
+// 임의의 위치로 이동
+
+let randomX = getRandomInt(24, 81), randomY = getRandomInt(37, 79)
+console.log('randomX:', randomX)
+console.log('randomY:', randomY)
+
+boxElement.style.cssText = `
+  transform: translateX(` + randomX +`px) translateY(`+ randomY +`px);
+  background-color: #fff;
+`
+  
+const MIN = 10
+const MAX = 30
+
+  for (let i = 0; i < 1e2; i++) {
+  const result = Math.floor(Math.random() * (MAX - MIN) + MIN)
+  console.log(result)
+}
 console.groupEnd()
 
 
