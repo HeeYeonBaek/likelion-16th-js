@@ -11,7 +11,7 @@ console.groupCollapsed('링크 기본 동작 방지 실습')
 
 const googleLink = document.querySelector('[href*="google"]')
 
-googleLink.addEventListener('click', (e) => {
+googleLink.addEventListener('click', (/*e*/) => {
   // 브라우저의 기본 작동(default) 방지(prevent, 중단) 명령
   // '브라우저. 너 원래 하던거 하지마!' (preventDefault)
   // e.preventDefault()
