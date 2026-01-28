@@ -2,13 +2,52 @@
 // 실습: 이벤트 핸들러 내 요소 참조 (Event Target)
 // --------------------------------------------------------------------------
 
+// 요약!!
+// 조건: addEventListener() 메서드의 리스너 함수를 화살표 함수 표현식으로 작성한 경우
+// 상황: ⚠️ this는 이벤트가 발생한 대상이 아니게 됩니다. 
+//      ✅ 이벤트 객체의 currentTarget 속성은 항상 이벤트가 발생한 대상을 가리킵니다.  
+
+
 // [실습] this 키워드를 사용한 요소 참조
 // 1. 일반 함수(function)를 이벤트 리스너 콜백으로 등록하세요.
 // 2. 함수 내부에서 this가 가리키는 대상의 배경색을 변경하는 로직을 작성하세요.
 // 3. 주의: 화살표 함수를 사용할 때와의 차이점을 콘솔로 확인해 보세요.
 console.groupCollapsed('this 키워드 활용 실습')
 
-// 이곳에 코드를 작성하세요.
+const jsToggleButton = document.querySelector('.js-button-toggle')
+
+// jsToggleButton.addEventListener('click', handleChangeBGColor)
+jsToggleButton.addEventListener('click', (e) => {
+  // 이벤트 객체(Event Object)
+  // addEventListener()에 전달된 콜백 함수에 전달됩니다.
+  // (e) => {}
+  console.log(e) // PointerEvent {}
+
+  // this
+  // 화살표 함수 표현식 내부
+  // 그러면 화살표 함수 식 안에서 this는? 무엇을 가리키는가?
+  console.log(this) // this !== jsToggleButton
+})
+
+
+jsToggleButton.addEventListener('click', handleChangeBGColor)
+
+function handleChangeBGColor() {
+  console.log('this =', this)
+  console.log(this === jsToggleButton)
+  // 시각 디자인
+  jsToggleButton.style.setProperty('background-color', '#c3a6ff')
+  // [접근성 고려] 프레스(press) 상태 전환
+  togglePressState(jsToggleButton)
+}
+
+function togglePressState(button) {
+  if (button.getAttribute('aria-pressed') === 'false') {
+    button.setAttribute('aria-pressed', 'true')
+  } else {
+    button.setAttribute('aria-pressed', 'false')
+  }
+}
 
 console.groupEnd()
 
