@@ -16,8 +16,34 @@
     <a href="https://www.google.com/">구글 바로가기</a>
 
     <div class="prevent-default-demo-checkbox" style="padding: 20px; user-select: none;">
-      <input type="checkbox" name="" id="watch-movie" /></div>
+      <input type="checkbox" name="" id="watch-movie" />
       <label for="watch-movie">영화보기</label>
+</div>
+
+
+<form
+  method="POST"
+  action="https://www.w3schools.com/action_page.php"
+  class="form js-register-form"
+>
+  <fieldset>
+    <legend class="screen-reader-only">사용자 등록 정보</legend>
+
+    <div class="form-group">
+      <label for="username">이름</label>
+      <input
+        type="text"
+        id="username"
+        name="username"
+        placeholder="실명을 입력하세요."
+        aria-required="true"
+        required />
+    </div>
+
+    <button type="submit">제출</button>
+  </fieldset>
+</form>
+
 
     <main id="main-content" class="prose">
       <header>

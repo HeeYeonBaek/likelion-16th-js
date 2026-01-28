@@ -60,7 +60,29 @@ checkbox.addEventListener('click', (e) => {
   console.log(e.type) // 'click'
   // 브라우저 기본 작동 방지한다면?
   e.preventDefault()
+
+   const checkboxInput = e.currentTarget
+  // 사용자가 체크박스의 체크 상태를 변경(change)한 후 값 읽기
+  if(checkboxInput.checked) {
+    // 사용자가 체크 상태를 기대하고 뭔가를 행할 때 여기에 코드 작성
+    console.log('영화 뭐 볼래요? 🎥')
+  } else {
+    // 사용자가 체크 해제 상태를 기대하고 뭔가를 행할 때 여기에 코드 작성
+    console.log('영화 보러 갈까요? 🎦')
+  }
 })
+
+
+
+const registerForm = document.querySelector('.js-register-form')
+
+registerForm.addEventListener('submit', (e) => {
+  e.preventDefault()
+  console.log('폼 전송 하지마! (브라우저 기본 작동 방지)')
+})
+
+
+
 console.groupEnd()
 
 
