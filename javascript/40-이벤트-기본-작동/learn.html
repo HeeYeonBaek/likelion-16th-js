@@ -3,14 +3,17 @@
 
   <head>
     <meta charset="UTF-8" />
-    <title>이벤트 마스터: 기본 작동 방지(Prevent Default)</title>
+    <meta name="description" content="이벤트-기본-작동"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>이벤트 마스터: 기본 작동 방지(Prevent Default)</title>
     <link rel="stylesheet" href="./assets/styles.css" />
     <script src="./learn.js" defer></script>
   </head>
 
   <body>
     <a href="#main-content" class="sr-only">본문 바로가기</a>
+
+    <a href="https://www.google.com/" onclick= "return false">구글 바로가기</a>
 
     <main id="main-content" class="prose">
       <header>
