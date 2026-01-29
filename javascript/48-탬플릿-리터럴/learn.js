@@ -8,7 +8,77 @@
 // 3. ${} 문법을 사용하여 상품 정보를 동적으로 삽입하세요.
 console.groupCollapsed('템플릿 리터럴 기본 실습')
 
-// 이곳에 코드를 작성하세요
+// Old String Concetination Version
+function generateOldHTMLCode(data) {
+  let htmlCode = [
+    '<div class="form-input">',
+      '<label for="' + data.id + '">' + data.label + '</label>',
+      '<input',
+        ' type="' + data.type + '"',
+        ' id="' + data.id + '"',
+        ' placeholder="' + data.placholder + '"',
+      '/>',
+    '</div>',
+  ].join('')
+  
+  return htmlCode
+}
+
+console.log(generateOldHTMLCode({
+  id: 'i@sodkckd-82',
+  label: '이름',
+  type: 'text',
+  placholder: '하월곡',
+}))
+
+// Templatae Literal Version
+function generateHTMLCode(
+  data /* { id: '', label: '', type: '', placholder: '' } */,
+) {
+  // 템플릿(Template) 리터럴(Literal, 값)
+  // JavaScript를 사용해 HTML 코드 구조화 (Markup)
+  const htmlTemplate = `
+    <div class="form-input">
+      <label for="${data.id}">${data.label}</label>
+      <input type="${data.type}" id="${data.id}" placeholder="${data.placholder}" />
+    </div>
+  `
+
+  return htmlTemplate
+}
+
+const emailInputTemaplte = generateHTMLCode({
+  id: 'isockd@dk-03',
+  label: 'user-email',
+  type: 'email',
+  placholder: 'user@company.io',
+})
+
+const passwordInputTemaplte = generateHTMLCode({
+  id: 'ocidsk!kd-82',
+  label: 'user-password',
+  type: 'password',
+  placholder: '숫자, 영어, 특수 문자 조합 8자리 이상 입력',
+})
+
+const passwordConfirmInputTemaplte = generateHTMLCode({
+  id: 'ocidsk!kd-81',
+  label: 'user-password-confirm',
+  type: 'password',
+  placholder: '입력한 패스워드와 일치하는 값 입력',
+})
+
+console.log(emailInputTemaplte)
+console.log(passwordInputTemaplte)
+console.log(passwordConfirmInputTemaplte)
+
+
+// 생성할 HTML 코드
+// <div class="form-input">
+//   <label for="{아이디}">{레이블}</label>
+//   <input type="{타입}" id="{아이디}" placeholder="{플레이스홀더}" />
+// </div>
+
 
 console.groupEnd()
 
@@ -33,10 +103,6 @@ console.groupEnd()
 // 3. 변수 부분에만 <strong> 태그를 감싸서 반환하는 로직을 작성해 보세요.
 console.groupCollapsed('태그드 템플릿 심화 실습')
 
-// 이곳에 코드를 작성하세요
-function highlight(strings, ...values) {
-  // 힌트: strings 배열과 values 배열을 결합해 보세요
-}
 
 console.groupEnd()
 
