@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // --------------------------------------------------------------------------
 // 실습: 삼항 연산자 (Ternary Operator)
 // --------------------------------------------------------------------------
@@ -8,7 +9,22 @@
 // 3. 결과를 변수에 담아 콘솔에 출력하세요.
 console.groupCollapsed('기본 삼항 연산자 식')
 
-// 이곳에 코드를 작성하세요.
+let condition = false
+// 장점: 간단하다. 
+// 단점: 식이 복잡해지면 코드 가독성이 떨어진다.
+let value = condition ? '참' : '거짓'
+// 장점: 가독성이 좋다. (코드 읽기가 쉬움)
+// 단점: 삼항 연산자 식보다 코드를 더 많이 써야 한다.     
+if (condition) {
+  value = '참'
+} else {
+  value = '거짓'
+}
+
+
+const score = 87
+const result = score >= 60 ? '합격' : '불합격'
+console.log(result)
 
 console.groupEnd()
 
