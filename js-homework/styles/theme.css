@@ -1,6 +1,9 @@
 :root{
+  /* 공통 */
   --black : #000;
   --white: #fff;
+  
+  /* 은행어플 */
   --blue: #2b78ED;
   --active-color: #055fea;
   --deactivate-color : #939393;
@@ -11,6 +14,17 @@
   --listTitle: #6b8094;
   --sub: #8F9AA5;
   --border:1px solid #dedede;
+
+  /* 플랜서비스 */
+  --bluegray: #8B9DB1;
+  --blueblack: #091520;
+  --active-box: #E8EFFD;
+  --hover-line: #BECCDB;
+  --shodow-color : #C8D8F4;
+  --planTitle : 16px;
+  --priceTitle : 36px;
+  --planList : 15px;
+  --bold: 700;
 }
 
 /* 접근성 관련 CSS */

@@ -7,6 +7,16 @@
   <title>Document</title>
 </head>
 <body>
-  
+  <div id="container" class="wrapper" data-role="main-content">
+  <ul class="list">
+    <li class="item">첫 번째 항목</li>
+    <li class="item" style="color: blue; margin-top: 10px;">두 번째 항목</li>
+    <li class="item">세 번째 항목</li>
+  </ul>
+</div>
+<script>
+ const list = document.querySelector('.list')
+  console.log(list.childNodes.length)
+</script>
 </body>
 </html>

@@ -1,0 +1,74 @@
+*{
+  font-family: "Noto Sans KR", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.component{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-block-size: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: #E9EEF3;
+
+  .planContainer{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display:flex;
+    flex-flow: nowrap row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    inline-size: calc(278px * 3 + 48px);
+    block-size: 338px;
+
+    .planBox{
+      display:flex;
+      flex-flow: nowrap column;
+      padding: 40px 30px;
+      inline-size: 278px;
+      block-size: 257px;
+      background-color: var(--white);
+      border-radius: 20px;
+
+      .planTitle{
+        text-align: center;
+        font-size: var(--planTitle);
+        font-weight: var(--bold);
+        color: var(--bluegray);
+      }
+
+      .priceTitle{
+        padding: 25px 0;
+        text-align: center;
+        font-size: var(--priceTitle);
+        font-weight: var(--bold);
+        color: var(--blueblack);
+      }
+
+      .planCaption li{
+        position: relative;
+        padding-block-end: 16px;
+        font-size: var(--planList);
+      }
+
+      .planCaption li::before{
+        content: '';
+        position: absolute;
+        inline-size: 12px;
+        block-size: 12px;
+        background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M10 2L5.5 9.5L3 6.5" stroke="%23407EEE" stroke-linecap="round" stroke-linejoin="round"/></svg>');        
+      }
+    }
+
+    .planBox:hover{
+       border: 2px solid var(--hover-line);
+       cursor: pointer;
+     }
+  }
+}
