@@ -35,6 +35,13 @@
       block-size: 257px;
       background-color: var(--white);
       border-radius: 20px;
+       border: 2px solid transparent; 
+      transition: border-color 0.3s;
+
+      &:hover{
+        border-color: var(--hover-line);
+        cursor: pointer;
+      }
 
       .planTitle{
         text-align: center;
@@ -51,24 +58,30 @@
         color: var(--blueblack);
       }
 
+      .planCaption{
+        padding-left: 0;
+      }
+
       .planCaption li{
         position: relative;
+        padding-inline-start: 20px; 
         padding-block-end: 16px;
         font-size: var(--planList);
       }
 
       .planCaption li::before{
-        content: '';
+         content: '';
         position: absolute;
+        left: 0; 
+        top: 4px;
         inline-size: 12px;
         block-size: 12px;
-        background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M10 2L5.5 9.5L3 6.5" stroke="%23407EEE" stroke-linecap="round" stroke-linejoin="round"/></svg>');        
+        background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M10 2L5.5 9.5L3 6.5" stroke="%23407EEE" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+        background-size: contain; 
+        background-repeat: no-repeat;
       }
     }
 
-    .planBox:hover{
-       border: 2px solid var(--hover-line);
-       cursor: pointer;
-     }
+    
   }
 }

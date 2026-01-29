@@ -4,11 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="./styles/index.css" />
+  <script src="./plan_service.js" defer></script>
   <title>Document</title>
 </head>
 <body class="component">
   <div class="planContainer">
-      <div class="planBox free">
+      <div class="planBox free" data-label="planSelect">
         <p class="planTitle">BASIC</p>
         <p class="priceTitle">Free</p>
         <ul class="planCaption">
@@ -17,7 +18,7 @@
           <li>커뮤니티 지원</li>
         </ul>
       </div>
-      <div class="planBox standard">
+      <div class="planBox standard" data-label="planSelect">
         <p class="planTitle">STANDARD</p>
         <p class="priceTitle">&#8361 15,000</p>
         <ul class="planCaption">
@@ -27,7 +28,7 @@
           <li>데이터 내보내기</li>
         </ul>
       </div>
-      <div class="planBox premium">
+      <div class="planBox premium" data-label="planSelect">
          <p class="planTitle">PREMIUM</p>
         <p class="priceTitle">&#8361 30,000</p>
         <ul class="planCaption">
