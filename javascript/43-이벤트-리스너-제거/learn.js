@@ -2,6 +2,44 @@
 // 실습: 이벤트 리스너 제거 (Event Listener Removal)
 // --------------------------------------------------------------------------
 
+const buttonGroup = document.querySelector('.js-button-group')
+const buttons = Array.from(buttonGroup.children)
+const addButton = buttons.at(0)
+const logButton = buttons.at(1)
+const removeButton = buttons.at(-1)
+
+addButton.addEventListener('click', () => {
+  console.log('로그 버튼에 클릭 이벤트 리스너 추가')
+  addEventListenerToLogButton()
+})
+
+removeButton.addEventListener('click', () => {
+  console.log('로그 버튼에 클릭 이벤트 리스너 제거')
+  removeEventListenerFromLogButton()
+})
+
+// Q. 이벤트 리스너로 추가된 함수는 아래 리스너 함수와 동일한 함수일까요?
+function addEventListenerToLogButton() {
+  logButton.addEventListener(
+    'click',
+    // 이 함수
+    logMeesage,
+  )
+}
+
+function removeEventListenerFromLogButton() {
+  logButton.removeEventListener(
+    'click',
+    // 이 함수
+    logMeesage,
+  )
+}
+
+function logMeesage() {
+  console.log('당신은 방금 로그 버튼을 눌렀습니다. 🫵🏻')
+}
+
+
 // [실습] 기명 함수를 이용한 리스너 등록과 제거
 // 1. 실행할 로직을 담은 기명 함수(handleClick)를 별도로 정의하세요.
 // 2. 버튼 요소에 해당 함수를 클릭 리스너로 등록하세요.
