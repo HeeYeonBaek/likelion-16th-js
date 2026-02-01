@@ -8,9 +8,9 @@
   <title>Document</title>
 </head>
 <body class="component">
-<div class="planContainer">
+<main class="planContainer" role="플랜선택박스">
   <div class="planBox free" >
-      <button type="button" class="clicker" data-label="planSelect">
+      <button type="button" class="clicker" role="button" aria-label="basic" data-label="planSelect">
         <p class="planTitle">BASIC</p>
         <p class="priceTitle">Free</p>
         <ul class="planCaption">
@@ -21,7 +21,7 @@
       </button>
   </div>
   <div class="planBox standard" >
-      <button type="button" class="clicker" data-label="planSelect">
+      <button type="button" class="clicker" role="button" aria-label="standard" data-label="planSelect">
         <p class="planTitle">STANDARD</p>
         <p class="priceTitle">&#8361 15,000</p>
         <ul class="planCaption">
@@ -33,7 +33,7 @@
       </button>
   </div>
   <div class="planBox premium">
-      <button type="button" class="clicker" data-label="planSelect">
+      <button type="button" class="clicker" role="button" aria-label="premium" data-label="planSelect">
         <p class="planTitle">PREMIUM</p>
         <p class="priceTitle">&#8361 30,000</p>
         <ul class="planCaption">
@@ -45,12 +45,12 @@
       </button>
   </div>
   
-</div>
   <div class="commentBox" data-label="planComment">
     <p class="comment">
       <span class="planName" data-label="planName"></span>
       플랜<span class="price"></span>을 선택하셨습니다.
     </p>
   </div>
+  </main>
 </body>
 </html>
