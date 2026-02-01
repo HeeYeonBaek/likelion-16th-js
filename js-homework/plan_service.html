@@ -4,13 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="./styles/index.css" />
-  <script src="./plan_service.js" defer></script>
+  <script src="./planService.js" defer></script>
   <title>Document</title>
 </head>
 <body class="component">
 <div class="planContainer">
-  <div class="planBox free" data-label="planSelect">
-      <button type="button" class="clicker">
+  <div class="planBox free" >
+      <button type="button" class="clicker" data-label="planSelect">
         <p class="planTitle">BASIC</p>
         <p class="priceTitle">Free</p>
         <ul class="planCaption">
@@ -20,8 +20,8 @@
         </ul>
       </button>
   </div>
-  <div class="planBox standard" data-label="planSelect">
-      <button type="button" class="clicker">
+  <div class="planBox standard" >
+      <button type="button" class="clicker" data-label="planSelect">
         <p class="planTitle">STANDARD</p>
         <p class="priceTitle">&#8361 15,000</p>
         <ul class="planCaption">
@@ -32,8 +32,8 @@
         </ul>
       </button>
   </div>
-  <div class="planBox premium" data-label="planSelect">
-      <button type="button" class="clicker">
+  <div class="planBox premium">
+      <button type="button" class="clicker" data-label="planSelect">
         <p class="planTitle">PREMIUM</p>
         <p class="priceTitle">&#8361 30,000</p>
         <ul class="planCaption">
@@ -44,12 +44,13 @@
         </ul>
       </button>
   </div>
+  
+</div>
   <div class="commentBox" data-label="planComment">
     <p class="comment">
       <span class="planName" data-label="planName"></span>
+      플랜<span class="price"></span>을 선택하셨습니다.
     </p>
   </div>
-</div>
-  
 </body>
 </html>
