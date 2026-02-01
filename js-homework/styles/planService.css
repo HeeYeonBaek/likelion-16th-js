@@ -4,6 +4,8 @@
   font-style: normal;
 }
 
+
+
 .component{
   position: relative;
   display: flex;
@@ -28,13 +30,28 @@
       border-radius: 20px;
       background-color: var(--white);
 
+      
+
       .clicker{
+        position: relative;
         inline-size: calc(278px - 33px);
         block-size: calc(338px - 40px);
         padding: 40px 33px;
         border: none;
         border-radius: 20px;
         background-color: var(--white);
+
+      .checkMark{
+        z-index: 999;
+        position: absolute;
+        top: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .checkMark .hide{
+        display: none;
+      }
 
         .planTitle{
           font-size: 16px;
@@ -66,6 +83,8 @@
           padding-inline-end: 6px;  
         }
       }
+
+    
 
       
     }
