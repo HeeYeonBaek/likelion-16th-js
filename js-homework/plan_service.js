@@ -5,6 +5,12 @@ const basicPlan = document.querySelector('.free')
 const standardPlan = document.querySelector('.standard')
 const premiumPlan = document.querySelector('.premium')
 
-console.log(basicPlan)
-console.log(standardPlan)
-console.log(premiumPlan)
+
+const selectBox = () => {
+  planContainerBox.forEach((box) => {
+    box.addEventListener('click', () => {
+      console.log(클릭되냐)
+    })
+  })
+}
+

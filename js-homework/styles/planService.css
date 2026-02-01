@@ -15,73 +15,68 @@
   background-color: #E9EEF3;
 
   .planContainer{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     display:flex;
     flex-flow: nowrap row;
     justify-content: space-between;
-    align-items: center;
     gap: 24px;
-    inline-size: calc(278px * 3 + 48px);
-    block-size: 338px;
-
+    
     .planBox{
       display:flex;
-      flex-flow: nowrap column;
-      padding: 40px 30px;
-      inline-size: 278px;
-      block-size: 257px;
-      background-color: var(--white);
+      flex-flow: nowrap row;
+      border: 2px solid var(--base-line);
       border-radius: 20px;
-       border: 2px solid transparent; 
-      transition: border-color 0.3s;
+      background-color: var(--white);
 
-      &:hover{
-        border-color: var(--hover-line);
-        cursor: pointer;
+      .clicker{
+        inline-size: calc(278px - 33px);
+        block-size: calc(338px - 40px);
+        padding: 40px 33px;
+        border: none;
+        border-radius: 20px;
+        background-color: var(--white);
+
+        .planTitle{
+          font-size: 16px;
+          font-weight: 700;
+          color: var(--bluegray);
+        }
+
+        .priceTitle{
+          padding-block: 25px;
+          font-size: 36px;
+          font-weight: 700;
+          color: var(--blueblack);
+        }
+
+        .planCaption{
+          text-align: left;
+        }
+
+        .planCaption li{
+          padding-block-end: 4px;
+          font-size: 15px;
+          font-weight: 400;
+        }
+
+        .planCaption li::before{
+          content: url('../image/maker.svg');
+          inline-size: 12px;
+          block-size: 12px;
+          padding-inline-end: 6px;  
+        }
       }
 
-      .planTitle{
-        text-align: center;
-        font-size: var(--planTitle);
-        font-weight: var(--bold);
-        color: var(--bluegray);
-      }
-
-      .priceTitle{
-        padding: 25px 0;
-        text-align: center;
-        font-size: var(--priceTitle);
-        font-weight: var(--bold);
-        color: var(--blueblack);
-      }
-
-      .planCaption{
-        padding-left: 0;
-      }
-
-      .planCaption li{
-        position: relative;
-        padding-inline-start: 20px; 
-        padding-block-end: 16px;
-        font-size: var(--planList);
-      }
-
-      .planCaption li::before{
-         content: '';
-        position: absolute;
-        left: 0; 
-        top: 4px;
-        inline-size: 12px;
-        block-size: 12px;
-        background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M10 2L5.5 9.5L3 6.5" stroke="%23407EEE" stroke-linecap="round" stroke-linejoin="round"/></svg>');
-        background-size: contain; 
-        background-repeat: no-repeat;
-      }
+      
     }
 
-    
+     .planBox:hover{
+        border-color: var(--hover-line);
+        transform: translateY(-10px);
+        box-shadow: 0px 5px 5px #D2E0F9;
+        transition: all 0.3s ease-out;
+        cursor: pointer;
+      }
   }
+
+  
 }
