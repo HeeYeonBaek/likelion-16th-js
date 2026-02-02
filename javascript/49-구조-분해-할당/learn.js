@@ -8,7 +8,35 @@
 // 3. 존재하지 않는 nickname 속성을 가져오되, 기본값으로 '익명'을 설정하세요.
 console.groupCollapsed('객체 구조 분해 할당 실습')
 
-// 이곳에 코드를 작성하세요
+const myNoteBook = {
+  name: 'macbook Pro',
+  cpu: 'm4',
+  ram: '32GB',
+  ssd: '2TB',
+  maker: 'Apple',
+}
+
+// 객체의 속성(property 또는 key) 이름을
+// 범위(scope) 내 변수로 정의하고
+// 변수의 각 속성에 매칭되는 값을 할당한다면?
+
+const maker = myNoteBook.maker
+const ssd = myNoteBook.ssd
+const cpu = myNoteBook.cpu
+const ram = myNoteBook.ram
+
+console.log(maker, cpu, ram, ssd)
+console.log(myNoteBook)
+
+// 더 편리하고 유용해서 많이 사용되는 인기있는 방법
+// 구조 분해 할당(Destructuring Assignment) 구문
+
+{
+  // myNoteBook 객체의 구조 : {maker, ssd, cpu, ram, name}
+
+  const { maker, ssd, cpu, ram, name } = myNoteBook
+  console.log(maker, ssd, cpu, ram, name)
+}
 
 console.groupEnd()
 
@@ -23,7 +51,21 @@ console.groupEnd()
 // 3. 배열에 값이 두 개뿐일 경우를 대비해 세 번째 변수에 기본값 0을 설정하세요.
 console.groupCollapsed('배열 구조 분해 할당 실습')
 
-// 이곳에 코드를 작성하세요
+const point = [92, -24, 9] //[x, y, z]
+
+{
+  const x = point.at(0)
+  const y = point.at(1)
+  const z = point.at(2)
+
+  console.log(x,y,z)
+}
+
+{
+  const [x, y, z] = point
+
+  console.log(x, y, z)
+}
 
 console.groupEnd()
 
