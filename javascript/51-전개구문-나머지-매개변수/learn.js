@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------
-// 실습: 배열 전개 구문 (Array Spread) - 압축을 해제
+// 실습: 배열 전개 구문 (Array Spread)
 // --------------------------------------------------------------------------
 
 // [실습] 배열 합치기와 복사
@@ -15,10 +15,10 @@ const snacks = ['cookie', 'jelly', 'candy']
 console.log(...snacks)
 
 // ...배열 = 배열 내부 원소들을 펼친 것과 같음
-console.log('cookie', 'jelly')
+console.log('cookie', 'jelly', 'candy')
+
 
 // 전개된(펼쳐진) 배열의 요소를 전달받는 함수
-
 function logSnacks(snack1, snack2, snack3) {
   console.log(snack1)
   console.log(snack2)
@@ -30,51 +30,52 @@ logSnacks(...snacks)
 
 const otherSnacks = ['cracker', 'pocky']
 
-// 배열의 concat() 메서드 VS 전개 구문
-
+// 배열의 concat() 메서드 vs 전개 구문
 {
-  // 배열을 병합(Array's concat method)
+  // 배열 병합(배열 메서드 활용, Array's concat method)
   const newSnacks = otherSnacks.concat(snacks)
   console.log(newSnacks)
-
 }
 
 {
-  // 배열 병합(spread syntax)
-
+  // 배열 병합(전개 구문 활용, spread syntax)
   const newSnacks = [...otherSnacks, ...snacks]
   console.log(newSnacks)
 }
 
+
 // 배열 변환
 {
+  // 유사 배열 객체
   const arrayLikeObject = {
-  length: 4,
-  0: 'number 1.',
-  1: 101,
-  2: { type: '유사배열객체' },
-  3: [{ id: 'dkdlel', title: '상점' }, { id: 'dkdlel', title: '매점' }]
+    length: 4,
+    0: 'number 1.',
+    1: 101,
+    2: { type: '유사 배열 객체' },
+    3: [
+      { id: 'kcisdl', title: '상점' },
+      { id: 'ciskde', title: '매점' },
+    ],
+  }
 
-}
+  console.log(arrayLikeObject[0])
+  console.log(arrayLikeObject[1])
+  console.log(arrayLikeObject[2])
+  console.log(arrayLikeObject[3][1])
+  console.log(arrayLikeObject.length)
+  console.log(Array.isArray(arrayLikeObject))
 
-console.log(arrayLikeObject[0])
-console.log(arrayLikeObject[1])
-console.log(arrayLikeObject[2])
-console.log(arrayLikeObject[3], [1])
-
-console.log(Array.isArray(arrayLikeObject))
-
-
-// Array.from()
-const convertedArray = Array.from(arrayLikeObject)
-console.log(Array.isArray(convertedArray))
-
+  // Array.from()
+  const convertedArray = Array.from(arrayLikeObject)
+  console.log(Array.isArray(convertedArray))
 
   // Spread Syntax
-  // 이터러블 (Iterable): 열거 가능한
-const convertedArrayFromSpread = [...arrayLikeObject]
-console.log(convertedArrayFromSpread)
+  // 이터러블(Iterable): 열거 가능한 (순환 가능한, 반복 가능한)
+  // const convertedArrayFromSPread = [...arrayLikeObject]
+  // console.log(convertedArrayFromSPread)
+
 }
+
 
 console.groupEnd()
 
@@ -89,7 +90,131 @@ console.groupEnd()
 // 3. 전달받은 숫자 배열의 합계를 구해 연산자와 함께 출력해 보세요.
 console.groupCollapsed('나머지 매개변수 실습')
 
-// 이곳에 코드를 작성하세요
+
+// 단계 1. 여러 수를 연산하는 함수 
+{
+  function sum(
+    num1, 
+    num2 = 0, 
+    num3 = 0, 
+    num4 = 0,
+    num5 = 0,
+    num6 = 0,
+    num7 = 0,
+    num8 = 0,
+    num9 = 0,
+  ) {
+    // 예전 방식
+    // 함수 안에서만 살아가는 (숨겨진) 객체 활용
+    // 인자들(arguments)의 집합 객체
+    
+    // 새로운 방식
+    // rest parameters
+
+    const total = num1 + num2 + num3 + num4 + num5 + num6 + num7 + num8 + num9
+    return total
+  }
+
+  console.log(sum(1))
+  console.log(sum(1, 2))
+  console.log(sum(1, 2, 3))
+  console.log(sum(1, 2, 3, 4))
+  console.log(sum(11, 22, 33, 44))
+  console.log(sum(10, -9, 8, 7))
+  console.log(sum(7, 5, 3, 1, 9, 11, 27, 35, 90))
+  console.log(sum(7, 5, 3, 1, 9, 11, 27, 35, 90, 101))
+  // console.log(sum(7, 5, 3, 1, 9, 11, 27, 35, 90, 101, ...))
+}
+
+// 단계 2. 여러 수를 연산하는 함수 
+{
+  function sum(/* num1, num2, num3, ..., numN */) {
+    // 예전 방식
+    // 함수 안에서만 살아가는 (숨겨진) 객체 활용
+    // 인자들(arguments)의 집합 객체
+    console.log(arguments)
+    
+    // 유사 배열 → 배열 객체로 변환
+    // - Array.prototype.slice.call(유사배열)
+    // - Array.from(유사배열)
+    // - [...유사배열]
+
+    const args = Array.from(arguments)
+
+    let total = 0
+
+    // for (const arg of args) total += arg
+    args.forEach((arg) => total += arg)
+
+    return total
+  }
+
+  console.log(sum(1))
+  console.log(sum(1, 2))
+  console.log(sum(1, 2, 3))
+  console.log(sum(1, 2, 3, 4))
+  console.log(sum(11, 22, 33, 44))
+  console.log(sum(10, -9, 8, 7))
+  console.log(sum(7, 5, 3, 1, 9, 11, 27, 35, 90))
+  console.log(sum(7, 5, 3, 1, 9, 11, 27, 35, 90, 101))
+
+
+  // 전달된 수의 평균 값을 연산하는 함수
+  {
+    function average() {
+      // arguments는 객체
+      const numbers = Array.from(arguments)
+      const count = numbers.length
+      console.log(Array.isArray(numbers))
+      
+      let total = 0
+      numbers.forEach(n => total += n)
+      const value = total / count 
+      return value
+    }
+
+    console.log(average(72, 9, 81, 23, 10))
+    console.log(average(100, 90, 82, 76, 100))
+  }
+}
+
+// 단계 3. 여러 수를 연산하는 함수 
+{
+  function sum(...restNumbers) {
+    // 오늘날 자주 사용하는 방식
+    // 나머지 매개변수 : 함수 외부에서 전달된 인자들의 집합 (실제 배열)
+    // console.log(Array.isArray(restNumbers))
+    
+    let total = 0
+
+    // 반복 처리
+
+    // for 문 활용
+    // for (let i = 0; i < restNumbers.length; ++i) {
+    //   const number = restNumbers[i]
+    //   total += number
+    // }
+
+    // for...of 문 활용
+    // for (const number of restNumbers) {
+    //   total += number
+    // }
+
+    // forEach() 메서드 활용
+    restNumbers.forEach((n) => total += n)
+
+    return total
+  }
+
+  console.log(sum(1))
+  console.log(sum(1, 2))
+  console.log(sum(1, 2, 3))
+  console.log(sum(1, 2, 3, 4))
+  console.log(sum(11, 22, 33, 44))
+  console.log(sum(10, -9, 8, 7))
+  console.log(sum(7, 5, 3, 1, 9, 11, 27, 35, 90))
+  console.log(sum(7, 5, 3, 1, 9, 11, 27, 35, 90, 101))
+}
 
 console.groupEnd()
 
