@@ -94,7 +94,7 @@ console.groupEnd()
 console.groupCollapsed('함수 매개변수 구조 분해 실습')
 
 function printProduct(product) {
-  return `${product.title} 제품은 ${product.price.toLocaleString()}원 입니다.`
+  return `"${product.title}" 제품은 ${product.price.toLocaleString()}원 입니다.`
 }
 
 function printProductDA(product) {
@@ -108,7 +108,7 @@ function printProductinParams({ title, price }) {
 
 console.log(printProduct({ title: '샘표 진간장', price: 10500 }))
 console.log(printProductDA({ title: '다이제 초코맛', price: 3600 }))
-console.log(printProductinParams({title: '로스팅 짜장면 파기름맛 5봉', price:'4800원'}))
+console.log(printProductinParams({title: '로스팅 짜장면 파기름맛 5봉', price:4800}))
 
 
 // 함수가 배열 타입을 매개변수로 전달받는다면?
@@ -131,7 +131,7 @@ function printFriendsStep2(friends) {
   console.log(friend1)
   console.log(friend2)
   console.log(friend3)
-    console.log(friend4)
+  console.log(friend4)
 }
 
 
@@ -139,7 +139,7 @@ function printFriendsStep3([friend1, friend2, friend3, friend4]) {
   console.log(friend1)
   console.log(friend2)
   console.log(friend3)
-    console.log(friend4)
+  console.log(friend4)
 }
 
 console.log(printFriendsStep1(['백건희', '백태희', '김춘배', '김영철']))
@@ -147,15 +147,36 @@ console.log(printFriendsStep2(['백건희', '백태희', '김춘배', '김영철
 console.log(printFriendsStep3(['백건희', '백태희', '김춘배', '김영철']))
 
 
-
-
-
-
-
-
-
-
 console.groupEnd()
+
+// --------------------------------------------------------------------------
+// 구조 분해 할당 + 기본 값 설정
+// --------------------------------------------------------------------------
+
+{
+  const myCup = {
+    name: '머그컵',
+    color: '보라색',
+    material: '도자기',
+    price: 25000,
+   // isPresent: false
+  }
+
+  const yourCup = {}
+
+  // 만약 myCup 객체에 isPresent 속성이 없다면?
+  // isPreset 속성의 기본 값을 할당하자.
+  const {
+    name = 'Mug Cup',
+    color = 'white',
+    material = 'plastic',
+    price = '2000',
+    isPresent = true
+  } = yourCup // myCup
+  
+  console.log(name, color, material, price)
+  console.log(isPresent)
+}
 
 
 // --------------------------------------------------------------------------
