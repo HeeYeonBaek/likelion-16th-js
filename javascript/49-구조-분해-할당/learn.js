@@ -38,6 +38,19 @@ console.log(myNoteBook)
   console.log(maker, ssd, cpu, ram, name)
 }
 
+{
+  // myNotebook 객체의 구조: { brand, processor, ram, ssd, maker }
+  const { 
+    brand: name,  // myNotebook 객체의 brand 속성 값을 지역 변수 name 할당
+    processor: cpu, 
+    memory, // myNotebook 객체에 없는 속성 이름 (값: undefined)
+    ssd, 
+    maker } = myNoteBook
+
+  // console.log(brand, processor, ram, ssd, maker)
+  console.log(name, cpu, memory, ssd, maker)
+}
+
 console.groupEnd()
 
 
@@ -80,7 +93,22 @@ console.groupEnd()
 // 3. 템플릿 리터럴을 사용하여 상품 정보를 출력해 보세요.
 console.groupCollapsed('함수 매개변수 구조 분해 실습')
 
-// 이곳에 코드를 작성하세요
+function printProduct(product) {
+  return `${product.title} 제품은 ${product.price.toLocaleString()}원 입니다.`
+}
+
+function printProductDA(product) {
+  const { title, price } = product
+  return `"${title}"제품의 가격은 ${price.toLocaleString()}원입니다.`
+}
+
+function printProductinParams({ title, price }) {
+  return `"${title}"제품의 가격은 ${price.toLocaleString()}원입니다`
+}
+
+console.log(printProduct({ title: '샘표 진간장', price: 10500 }))
+console.log(printProductDA({ title: '다이제 초코맛', price: 3600 }))
+console.log(printProductinParams({title: '로스팅 짜장면 파기름맛 5봉', price:'4800원'}))
 
 console.groupEnd()
 
