@@ -216,6 +216,16 @@ console.groupCollapsed('나머지 매개변수 실습')
   console.log(sum(7, 5, 3, 1, 9, 11, 27, 35, 90, 101))
 }
 
+// 두 수를 곱한 후, 나머지 수를 더한 값을 계산하는 함수
+
+function calc(n1, n2, ...numbers) {
+    console.log({ n1, n2, numbers })
+}
+
+
+console.log(calc(2, 4, 1, 2, 3)) 
+// 2 * 4 = 8, 8 + 1 + 2 + 3 = 13
+
 console.groupEnd()
 
 
