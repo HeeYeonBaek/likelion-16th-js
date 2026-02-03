@@ -7,7 +7,41 @@
 // 2. findIndex를 활용하고, 결과가 없을 시 -1이 나오는지 확인하세요.
 console.groupCollapsed('1. findIndex 실습')
 
-// 이곳에 코드를 작성하세요
+const users = [
+  { id: 'person', name: '건희' , location: '서울'},
+  { id: 'person', name: '태희' , location: '서울'},
+  { id: 'person', name: '춘배' , location: '부천'},
+  { id: 'person', name: '영철' , location: '인천'},
+]
+
+// 서울에 거주하는 사용자의 인덱스를 찾아 반환
+const findLocation = '서울'
+
+// 단계 1
+let userInSeoulIndex = users.findIndex((user) => {
+  if (user.location.includes(findLocation)) return true
+  return false
+})
+
+console.log(userInSeoulIndex)
+// console.log(users.at(userInSeoulIndex).name)
+
+// 단계 2
+userInSeoulIndex = users.findIndex((user) => {
+  return user.location.includes(findLocation)
+})
+
+// 단계 3
+userInSeoulIndex = users.findIndex((user) => user.location.includes(findLocation))
+
+
+if (userInSeoulIndex > -1) {
+  console.log(users.at(userInSeoulIndex).name)
+}
+
+
+
+
 
 console.groupEnd()
 
