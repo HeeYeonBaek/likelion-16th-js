@@ -5,7 +5,7 @@
 // [실습 1] 거주지 일치 인덱스 출력
 // 1. users 배열에서 사용자가 입력한 거주지(location)와 일치하는 첫 번째 인덱스를 찾으세요.
 // 2. findIndex를 활용하고, 결과가 없을 시 -1이 나오는지 확인하세요.
-console.groupCollapsed('1. findIndex 실습')
+console.group('1. findIndex 실습')
 
 const users = [
   { id: 'person', name: '건희' , location: '서울'},
@@ -14,34 +14,126 @@ const users = [
   { id: 'person', name: '영철' , location: '인천'},
 ]
 
-// 서울에 거주하는 사용자의 인덱스를 찾아 반환
-const findLocation = '서울'
+// 검색한 위치에 거주하는 사용자의 인덱스를 찾아 반환 
+const findLocation = '태백'
 
-// 단계 1
+// 단계 1.
 let userInSeoulIndex = users.findIndex((user) => {
   if (user.location.includes(findLocation)) return true
   return false
 })
 
-console.log(userInSeoulIndex)
-// console.log(users.at(userInSeoulIndex).name)
-
-// 단계 2
+// 단계 2.
 userInSeoulIndex = users.findIndex((user) => {
   return user.location.includes(findLocation)
 })
 
-// 단계 3
+// 단계 3.
 userInSeoulIndex = users.findIndex((user) => user.location.includes(findLocation))
 
-
+console.log(userInSeoulIndex)
 if (userInSeoulIndex > -1) {
   console.log(users.at(userInSeoulIndex).name)
 }
 
 
+// 간단한 배열에서 find() 메서드 사용
+{const numbers = [
+  1, 
+  2, 
+  3, 
+  4, 
+  5, 
+  6, 
+  7, 
+  8, 
+  9, 
+  10,
+]
+
+const wantNumber = 10
+
+// 단계 1.
+let foundNumber = numbers.find(function(number) {
+  if (number === wantNumber) return true
+  return false
+})
+
+// 단계 2.
+foundNumber = numbers.find(function(number) {
+  return number === wantNumber
+})
+
+// 단계 3.
+foundNumber = numbers.find((number) => {
+  return number === wantNumber
+})
+
+// 단계 4.
+foundNumber = numbers.find((number) => number === wantNumber)
+
+if (foundNumber) {
+  console.log(foundNumber)
+} else {
+  console.warn(`찾는 ${wantNumber} 숫자 값이 [${numbers}] 배열 안에 존재하지 않습니다.`)
+}
+}
+
+// 복잡한 배열에서 find() 메서드 사용
+{
+  // 사용자 정보가 포함된 배열
+  const users = [
+  { id: 'user-puppy', name: '건희' , hobby:'쭈구리', email:'pome1@naver.com',  location: '서울'},
+  { id: 'user-puppy', name: '태희' , hobby:'땅굴파기', email:'pome2@gmail.com',  location: '서울'},
+  { id: 'user-kitty', name: '춘배' , hobby:'부비기', email:'neko1@daum.net' , location: '부천'},
+  { id: 'user-kitty', name: '영철', hobby: '춘배갈구기', email: 'neko2@kakao.com', location: '인천' },
+  { id: 'user-puppy', name: '알콩' , hobby:'배까기', email:'pome3@kakao.com',  location: '제주'},
+  { id: 'user-puppy', name: '달콩' , hobby:'눈치보기', email:'mart@kakao.com',  location: '제주'},
+  ]
+  
+  // [이름 or 취미 or 이메일 or 위치]으로 찾을 것인지?
+  // 이메일이 'pome1@naver.com' 또는 'pome1'을 포함한 사용자를 찾아라.
+
+  let foundUser = null
+
+  
+  // 로직 (재사용 고려 > 기능 작성 > 함수 선언)
+  // const searchTerm = '쭈구리'
+  // const category = 'hobby'
+  // foundUser = user.find((user) => user[category].includes(searchTerm))
+  
+  function findUser(userlist, { category = 'name', search = '' } = {}) {
+    foundUser = users.find((user) =>
+      user[category].includes(search))
+    
+    return foundUser
+  }
+
+  foundUser = findUser(users, {search: '쭈구리', category:'hobby'})
+
+  if (foundUser) {
+    const { name, email, location } = foundUser
+    console.log(name)
+    console.log(email)
+        console.log(location)
+
+  } else {
+    console.log('users 배열 안에 찾는 사용자가 없습니다.')
+  }
 
 
+  {
+    function findUser(userList, search, category = 'name') {
+    
+      return userList.find((user) => {
+      user[category] ? user[category].includes(search) : false
+    }
+    )
+  }
+
+    console.log(findUser(users, '땅굴', 'hobby'))
+  }
+}
 
 console.groupEnd()
 
