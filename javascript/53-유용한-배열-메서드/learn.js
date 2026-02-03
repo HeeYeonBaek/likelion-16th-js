@@ -412,6 +412,33 @@ console.group('4. map 실습')
   })
 
   console.log(neoUsers)
+
+  // 동적 렌더링을 위한 마크업 코드 생성
+  const cards = [
+    { id: 'card-naver', title: '네이버', link: 'https://naver.com' },
+    {id:'card-google', title:'구글', link:'https://google.com'},
+    { id: 'card-daum', title: '다음', link: 'https://daum.net' },
+    {id:'card-daum', title:'쿠팡', link:'https://coupang.net'},
+  ]
+
+  // 동적 렌더링을 위한 마크업 코드 생성
+  
+  // 카드 데이터를 순환해 카드 마크업을 포함하는 새로운 배열
+
+  const cardMarkups = cards.map((card) => {
+    const markup = `
+    <div class="card" data-id="${card.id}">
+    <a href="${card.link}" target="_blank" rel="noopener noreferrer">
+      <svg width="16" height="16" viewBox="0 0 16 16">...</svg>
+      ${card.title}
+    </a>
+  </div>
+    `
+    return markup
+  })
+
+  console.log(cardMarkups)
+
 }
 
 console.groupEnd()
