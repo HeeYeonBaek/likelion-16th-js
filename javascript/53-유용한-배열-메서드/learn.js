@@ -291,7 +291,7 @@ console.groupEnd()
 // [실습 4] 고유 ID 설정 (데이터 변형)
 // 1. map을 사용하여 모든 사용자의 id 앞에 접두사(prefix)를 붙인 새 배열을 만드세요.
 // 2. 예: 1 -> 'user_1' (템플릿 리터럴 활용)
-console.group('4. map 실습')
+console.groupCollapsed('4. map 실습')
 
 
 // 간단한 데이터 가공
@@ -425,7 +425,8 @@ console.group('4. map 실습')
   
   // 카드 데이터를 순환해 카드 마크업을 포함하는 새로운 배열
 
-  const cardMarkups = cards.map((card) => {
+    // 구조 분해 할당을 사용하지 않은 경우
+  let cardMarkups = cards.map((card) => {
     const markup = `
     <div class="card" data-id="${card.id}">
     <a href="${card.link}" target="_blank" rel="noopener noreferrer">
@@ -437,11 +438,78 @@ console.group('4. map 실습')
     return markup
   })
 
-  console.log(cardMarkups)
+
+  // 구조 분해 할당을 사용한 경우
+   cardMarkups = cards.map(({id, title, link}) => {
+    const markup = `
+    <div class="card" data-id="${id}">
+    <a href="${link}" target="_blank" rel="noopener noreferrer">
+      <svg width="16" height="16" viewBox="0 0 16 16">...</svg>
+      ${title}
+    </a>
+  </div>
+    `
+    return markup
+  })
+
+  console.log(cardMarkups.length)
 
 }
+console.groupEnd()
+
+console.group('5. 다이나믹 마크업')
+
+// 데이터
+const buttonData = [
+  { id: 'button-register',type:'submit', label: '가입', message: '성공적으로 회원가입되었습니다.' },
+  { id: 'button-login',type:'submit', label: '로그인', message: '사용자 계정으로 로그인되었습니다.' },
+  {id:'button-login',type:'reset', label:'초기화', message:'사용자 계정으로 로그인되었습니다.'},
+  {id: 'button-readmore',type:'button', label:'더보기', message:'감춰진 데이터를 더보기합니다.'},
+]
+
+
+// 데이터 순환해 동적으로 HTML 마크업을 JavaScript 프로그래밍으로 생성 > 새로운 배열
+const buttonMarkUps = buttonData.map((button) => {
+  const markup = `
+  <button 
+  type="${button.type}"
+  data-id="${button.id}"
+  data-message="${button.message}"
+  >
+    ${button.label}
+  </button>`
+
+  return markup
+})
+
+const buttonHTMLcode = buttonMarkUps.join('')
+
+// 가공된 데이터를 웹 문서 화면에 그리기
+const dynamicMarkupContainer = document.querySelector('[data-dynamic-markup]')
+
+// 'property' in Element
+console.log('innerHTML' in dynamicMarkupContainer)
+
+dynamicMarkupContainer.innerHTML = buttonHTMLcode
+
+// 화면에 그려진 집합 요소들을 순환해서 이벤트 리스너 추가
+// 컨테이너 요소의 자식들(children) 수집
+const dynamicButtons = Array.from(dynamicMarkupContainer.children)
+dynamicButtons.forEach((button) => {
+  button.addEventListener('click', (e) => {
+    const buttonElement = e.currentTarget
+    const message = buttonElement.dataset.message
+    alert(message)
+    })
+})
+
+console.log(dynamicMarkupContainer.children)
+
 
 console.groupEnd()
+
+
+
 
 
 // --------------------------------------------------------------------------
