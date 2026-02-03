@@ -37,6 +37,16 @@ if (userInSeoulIndex > -1) {
 }
 
 
+
+console.groupEnd()
+
+
+// [실습 2] 국적 일치 사용자 이름 출력
+// 1. users 배열에서 특정 국적(nationality)을 가진 첫 번째 사용자를 찾으세요.
+// 2. find를 활용해 객체를 찾고, 해당 객체의 name만 출력해 보세요.
+console.groupCollapsed('2. find 실습')
+
+
 // 간단한 배열에서 find() 메서드 사용
 {const numbers = [
   1, 
@@ -140,16 +150,6 @@ if (foundNumber) {
 console.groupEnd()
 
 
-// [실습 2] 국적 일치 사용자 이름 출력
-// 1. users 배열에서 특정 국적(nationality)을 가진 첫 번째 사용자를 찾으세요.
-// 2. find를 활용해 객체를 찾고, 해당 객체의 name만 출력해 보세요.
-console.groupCollapsed('2. find 실습')
-
-// 이곳에 코드를 작성하세요
-
-console.groupEnd()
-
-
 // --------------------------------------------------------------------------
 // 실습: 가공 및 필터링 (filter & map)
 // --------------------------------------------------------------------------
@@ -157,7 +157,7 @@ console.groupEnd()
 // [실습 3] 국적 일치 사용자 그룹 출력
 // 1. filter를 사용하여 특정 국적을 가진 모든 사용자를 모은 새 배열을 만드세요.
 // 2. JSON.stringify(result, null, 2)를 사용하여 화면에 예쁘게 출력해 보세요.
-console.group('3. filter 실습')
+console.groupCollapsed('3. filter 실습')
 
 // 간단한 데이터 필터링
 
@@ -246,6 +246,7 @@ console.log(users.find((user) => user.name.includes('예지')))
   // 취미가 '??'인 사람들만 걸러보세요.
   
 
+
   const running = '러닝'
 
   foundPeople = users.filter((users) => users.hobby[0] === running)
@@ -284,18 +285,65 @@ console.log(users.find((user) => user.name.includes('예지')))
 }
 
 
-
-// 복잡한 데이터 필터링
-
 console.groupEnd()
 
 
 // [실습 4] 고유 ID 설정 (데이터 변형)
 // 1. map을 사용하여 모든 사용자의 id 앞에 접두사(prefix)를 붙인 새 배열을 만드세요.
 // 2. 예: 1 -> 'user_1' (템플릿 리터럴 활용)
-console.groupCollapsed('4. map 실습')
+console.group('4. map 실습')
 
-// 이곳에 코드를 작성하세요
+
+// 간단한 데이터 가공
+{
+  // 숫자를 나타내는 단어로 구성된 배열
+  const words = '하나 둘 셋 넷 다섯 여섯 일곱 여덟 아홉 열'.split(' ')
+  console.log(words)
+
+  // 가공된 결과: [{인덱스 : 숫자를 표현한 단어}, {인덱스 : 숫자를 표현한 단어}...]
+  const indexOfWord = words.map((word, index) => {
+    // 배열을 순환해 각 요소마다 가공 한 결과를 내보낸다.
+    // 가공한 요소 : {0: '하나'}
+    const mappedWord = { [index]: word }
+    return mappedWord
+  })
+
+  // 가공된 각 요소를 포함하는 새로운 배열 반환
+  // 예상된 결과 : [{0: '하나'}, {1: '둘'}]
+
+  console.log(indexOfWord)
+
+  
+
+  // 콜백 함수의 순서? 어떻게 지정되나?
+  // map() 메서드 흉내내기를 통해
+  // 콜백 함수의 순서 지정하는 방법 학습
+  
+  function customMap(array, callbackFn) {
+    // for 문
+    const mappedArray = []
+
+    for (let index = 0, l = array.length; index < l; ++index) {
+      const item = array.at(index)
+      const mappedItem = callbackFn(index, item, array)
+      mappedArray.push(mappedItem)
+    }
+      // map()함수 흉내내기
+      // 반환값 가공된 요소들로 구성된 새로운 배열 반환
+      return mappedArray
+    }
+
+
+
+  const customResult = customMap(words, (item, index) => {
+    const mappedWord = { [index]: item }
+    return mappedWord
+  })
+
+  console.log(customResult)
+}
+
+// 복잡한 데이터 가공
 
 console.groupEnd()
 
