@@ -457,7 +457,7 @@ console.groupCollapsed('4. map 실습')
 }
 console.groupEnd()
 
-console.group('5. 다이나믹 마크업')
+console.groupCollapsed('5. 다이나믹 마크업')
 
 // 데이터
 const buttonData = [
@@ -560,9 +560,28 @@ console.groupEnd()
 // [실습 5] 국적 일치 & 고유 ID 설정 (체이닝)
 // 1. filter로 특정 국적 유저를 먼저 거르고, map으로 ID를 변형하는 체이닝을 구현하세요.
 // 2. 이벤트 위임을 활용해 컨테이너 하나에서 모든 입력을 처리해 보세요.
-console.groupCollapsed('5. 메서드 체이닝 실습')
+console.group('6. 메서드 체이닝 실습')
 
-// 이곳에 코드를 작성하세요
+const numbering = [2, 4, 8]
+{
+  // 데이터 가공
+  const doubleNumbers = numbering.map(n => n ** 2)
+
+  // 데이터 필터링
+  const numbersLt10 = doubleNumbers.filter(n => n < 10)
+
+  console.log(typeof numbering)
+  console.log(doubleNumbers)
+  console.log(numbersLt10)
+
+}
+
+// 메서드 체이닝 = 메서드를 연결해 사용한다. : 2가지의 메서드르를 연결해서 사용
+
+{
+  const lessThan10 = numbers.map(n => n ** 2).filter(n => n < 10)
+  console.log(lessThan10)
+}
 
 console.groupEnd()
 
