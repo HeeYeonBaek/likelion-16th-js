@@ -505,8 +505,49 @@ dynamicButtons.forEach((button) => {
 
 console.log(dynamicMarkupContainer.children)
 
+const cuteData = [
+  { id: 'gunhee', type: 'button', label: '건희', message: '안녕하세요. 저는 흰색 포메라니안 건희에오' },
+  { id: 'taehee', type: 'button', label: '태희', message: '안녕하세요. 저는 카라멜색 포메라니안 태희에오' },
+  { id: 'chunbae', type: 'button', label: '춘배', message: '안녕하세요. 저는 흰색 고양이 춘배에오. 냥국 왕자에오' },
+  { id:'youngchul', type: 'button', label: '영철', message: '안녕하세요. 저는 회색 고양이 영철이에오. 춘배오빠 동생이에오'}
+]
+
+
+const clickMarkup = cuteData.map((button) => {
+  const cuteMarkUp = `
+    <button
+    type="${button.type}"
+    data-id="${button.id}"
+    data-message="${button.message}">
+    ${button.label}
+    </button>
+  `
+
+  return cuteMarkUp
+})
+
+const cuteHTMLcode = clickMarkup.join('')
+
+const dynamicCute = document.querySelector('[data-cute-markup]')
+
+
+dynamicCute.innerHTML = cuteHTMLcode
+const cuteButton = Array.from(dynamicCute.children)
+cuteButton.forEach((cute) => {
+  cute.addEventListener('click', (e) => {
+    const cuteElement = e.currentTarget
+    const cuteMessage = cuteElement.dataset.message
+    alert(cuteMessage)
+  })
+})
 
 console.groupEnd()
+
+
+// --------------------------------------------------------------------------
+// 실습 : 다이내믹 마크업 실습
+// --------------------------------------------------------------------------
+
 
 
 
