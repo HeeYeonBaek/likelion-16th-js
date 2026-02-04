@@ -7,8 +7,37 @@
 // 2. map()과 소괄호(())를 활용한 암묵적 반환으로 { name: '이름' } 형태의 객체 배열을 만드세요.
 console.groupCollapsed('1. 객체 변환 실습 (암묵적 반환)')
 
-// 이곳에 코드를 작성하세요
+const names = ['우혁', '하민', '준식']
 
+
+// 명시적 반환
+{
+  const result = names.map((name) => {
+  // 명시적 결과 반환
+  // const returnVlaue = {['name']: name}
+  //  const returnVlaue = {'name': name}
+  //  const returnVlaue = {name : name}
+  //  const returnVlaue = {name}
+  //  return returnVlaue
+  
+  return{name}
+})
+
+// const result = [{ name: '우혁' }, {name: '하민'}, {name: '준식'}]
+console.log(result)
+
+}
+
+
+// 암묵적 반환
+
+{
+  // () => {return value}
+  // () => (value)
+  const result = names.map(name => ({name}))
+
+  console.log(result)
+}
 console.groupEnd()
 
 
@@ -43,3 +72,4 @@ console.groupEnd()
 // 3. 가독성: 짧은 변환 로직(map, filter)에서는 암묵적 반환이 코드 가독성을 크게 높여줍니다.
 // 4. 명시적 반환 활용: 로직이 복잡해지거나 여러 줄의 코드가 필요할 때는 중괄호와 return을 쓰는 것이 더 안전합니다.
 // --------------------------------------------------------------------------
+
