@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // --------------------------------------------------------------------------
 // 실습: 효율적인 요소 추가
 // --------------------------------------------------------------------------
@@ -16,156 +17,7 @@ const users = [
   { name: '서지수', age: 23, job: '학생' },
 ]
 
-  // 즉시 실행되는 함수 표현식 (IIFE)
-// Immediate Invoked Function Expression
-  
-// 실습
-const practice = document.getElementById('practice1')
-  const form = practice.querySelector('.user-search-form')
-  const list = practice.querySelector('.user-list')
-
-  form.addEventListener('submit', (e) => {
-    // 브라우저 기본 작동 방지
-    e.preventDefault()
-
-    // 사용자 입력 값 가져오기
-    const { search } = form.elements
-    const inputedName = search.value.trim().toLowerCase()
-    
-    // 사용자 입력 값(이름)이 users 배열 내부의 아이템의 name 필드와 일치한다면?
-    const searchedUser = users.find(({ name }) => name.includes(inputedName))
-    
-    if (searchedUser) {
-      // 검색된 사용자가 있다면?
-      // 새로운 <li> 요소 만들어 이름, 나이, 직업 정보 구성
-      const item = document.createElement('li')
-      const { name, age, job } = searchedUser
-      item.textContent = `${job} ${name}(${age})`
-      // 생성된 <li> 요소를 <ul> 안에 마지막 자식 요소로 추가
-      list.appendChild(item)
-    } else {
-      // 검색 결과 사용자가 없다면?
-      // 일치하는 사용자가 없다면 경고 메시지를 출력
-
-    }
-
-    // 폼 초기화
-    form.reset()
-  })
-
-{
-   // 제어할 요소들
-  const container = document.querySelector('.container')
-  const button = container.firstElementChild
-  const list = container.lastElementChild
-    
-
-  // 성능 저하를 유발하는 사례
-  ;(() => {
-    
-    button.addEventListener('click', () => {
-      users.forEach(({ job, name }) => {
-        const item = document.createElement('li')
-        item.textContent = `${job} ${name}`
-        // 성능 저하를 유발하는 렌더링 (반복하는 동안 계속)
-        list.append(item)
-      })
-    })
-
-  })()
-
- // 성능 최적화 사례 (HTML 문자열 DOM에 삽입)
-    ; (() => {
-
-
-      // list의 개별 요소에 이벤트 리스너 추가
-      // Array.from(list.children).forEach((child) => {
-      //   child.addEventListener('click', (e) => {
-      //     const item = e.currentTarget
-      //     const itemContent = item.textContent
-      //     alert(itemContent)
-      //   })
-      // })
-
-      // 이벤트 위임의 위대함(?) 👏
-      list.addEventListener('click', (e) => {
-        const listItem = e.target.closest('li')
-        if (!listItem) return
-        alert(listItem.textContent)
-      })
-    
-      button.addEventListener(
-        'click',
-        () => {
-          // ❌ 나쁜 코드 (성능 저하 )
-          // users.forEach(({ job, name }) => {
-          //   // HTML 코드 생성
-          //   const htmlCode = `<li>${job} ${name}</li>`
-          //   list.innerHTML += htmlCode // 그려라! x 10
-          // })
-
-          // ✅ 좋은 코드 (성능 저하 없음)
-          // const liItemsHTMLCode = users
-          // 메서드 체이닝
-          // .map(({ job, name }) => `<li>${job} ${name}</li>`)
-          // .join('')
-
-          const liItemsHTMLCode = users
-            .reduce((htmlCode, { job, name }) => {
-              htmlCode += `<li>${job} ${name}</li>`
-              return htmlCode
-            }, '')
-
-          // console.log(liItemsHTMLCode)
-          list.innerHTML += liItemsHTMLCode // 그려라! x 1
-        }
-      )
-
-    })()
-
-
-    // 효과적으로 여러 요소(들)을 DOM에 삽입하는 방법
-    // 문서 조각 (DocumentFragment) 요소를 사용
-
-    ; (() => {
-      // 문서 조각(가상 DOM 컨테이너) 객체 생성
-      const fragment = document.createDocumentFragment()
-
-      button.addEventListener('click', () => {
-        users.forEach(({ job, name }) => {
-          const item = document.createElement('li')
-          item.textContent = `${job} ${name}`
-          // fragment 객체에 삽입(성능저하? 없어요!!)
-          fragment.firstElementChild.appendChild(item)
-        })
-
-        console.log(fragment.firstElementChild.outerHTML)
-        list.innerHTML += fragment.firstElementChild.innerHTML
-      })
-    })
-}
-
-
-
-const todaysMenu = [
-  { name: '김치찌개', price: 9000 },
-  { name: '비빔밥', price: 9500 },
-  { name: '불고기', price: 12000 },
-  { name: '제육볶음', price: 10000 },
-  { name: '떡볶이', price: 7000 },
-]
-console.log(todaysMenu)
-const newReviews = [
-  { author: '김민수', content: '생각보다 매콤해서 입맛에 딱 맞아요!' },
-  { author: '이수진', content: '냉동이라 큰 기대 안 했는데 맛있었어요.' },
-  { author: '박지훈', content: '양념이 진해서 밥반찬으로 딱이에요.' },
-]
-
-// [실습 1] 사용자 정보 검색 및 추가 (개별 요소 생성)
-// 1. form submit 시 입력값을 가져와 users에서 find 하세요.
-// 2. 일치하는 사용자가 있다면 createElement로 li를 만들어 추가하세요.
-console.groupCollapsed('1. 사용자 검색 및 추가')
-
+// 실습 1. 사용자 정보 검색 및 추가
 {
   const practice = document.getElementById('practice1')
   const form = practice.querySelector('.user-search-form')
@@ -207,6 +59,142 @@ console.groupCollapsed('1. 사용자 검색 및 추가')
     form.reset()
   })
 }
+
+
+{
+  // 제어할 요소들
+  const container = document.querySelector('.container')
+  const button = container.firstElementChild
+  const list = container.lastElementChild
+
+  // 성능 저하를 유발하는 사례
+  ;(() => {
+    
+    button.addEventListener('click', () => {
+      users.forEach(({ job, name }) => {
+        const item = document.createElement('li')
+        item.textContent = `${job} ${name}`
+        // 성능 저하를 유발하는 렌더링 (반복하는 동안 계속)
+        list.append(item)
+      })
+    })
+
+  }) //()
+
+  // 성능 최적화 사례 (요소 생성 및 삽입)
+  ;(() => {
+    
+    button.addEventListener(
+      'click', 
+      () => {
+        const items = users.map(({ job, name }) => {
+          const item = document.createElement('li')
+          item.textContent = `${job} ${name}`
+          return item
+        })
+
+        // list.append(...items)
+        // list.append(item0, item1, item2, ..., item9)
+        list.append(...items)
+      },
+      { once: true },
+    )
+
+  }) //()
+
+  // 성능 최적화 사례 (HTML 문자열 DOM에 삽입)
+  ;(() => {
+
+    // list의 개별 요소에 이벤트 리스너 추가
+    // Array.from(list.children).forEach((child) => {
+    //   child.addEventListener('click', (e) => {
+    //     const item = e.currentTarget
+    //     const itemContent = item.textContent
+    //     alert(itemContent)
+    //   })
+    // })
+
+    // 이벤트 위임의 위대함(?) 👏
+    list.addEventListener('click', (e) => {
+      const listItem = e.target.closest('li')
+      if (!listItem) return
+      alert(listItem.textContent)
+    })
+    
+    button.addEventListener(
+      'click', 
+      () => {
+        // ❌ 나쁜 코드 (성능 저하 )
+        // users.forEach(({ job, name }) => {
+        //   // HTML 코드 생성
+        //   const htmlCode = `<li>${job} ${name}</li>`
+        //   list.innerHTML += htmlCode // 그려라! x 10
+        // })
+
+        // ✅ 좋은 코드 (성능 저하 없음)
+        // const liItemsHTMLCode = users
+          // 메서드 체이닝
+          // .map(({ job, name }) => `<li>${job} ${name}</li>`)
+          // .join('')
+
+        const liItemsHTMLCode = users
+          .reduce((htmlCode, { job, name }) => {
+            htmlCode += `<li>${job} ${name}</li>`
+            return htmlCode
+          }, '')
+
+        // console.log(liItemsHTMLCode)
+        list.innerHTML += liItemsHTMLCode // 그려라! x 1
+      }
+    )
+
+  }) // ()
+
+  // 효과적으로 여러 요소(들)을 DOM에 삽입하는 방법
+  // 문서 조각(DocumentFragment) 요소를 사용
+  ;(() => {
+    // 문서 조각(가상 DOM 컨테이너) 객체 생성
+    // 실제 문서가 아닌, 가상의 DOM 컨테이너(메모리) 상에 상주하는 데이터 활용 
+    const fragment = document.createDocumentFragment()
+    fragment.appendChild(document.createElement('ul'))
+    // <document-fragment><ul>...</ul></document-fragment>
+    // console.log(fragment) 
+
+    button.addEventListener('click', () => {
+      users.forEach(({ job, name }) => {
+        const item = document.createElement('li')
+        item.textContent = `${job} ${name}`
+        // fragment 객체에 삽입 (성능 저하? 없어요!!!)
+        fragment.firstElementChild.appendChild(item)
+      })
+
+      // console.log(fragment.firstElementChild.outerHTML)
+      list.innerHTML += fragment.firstElementChild.innerHTML
+    })
+  }) // ()
+}
+
+
+const todaysMenu = [
+  { name: '김치찌개', price: 9000 },
+  { name: '비빔밥', price: 9500 },
+  { name: '불고기', price: 12000 },
+  { name: '제육볶음', price: 10000 },
+  { name: '떡볶이', price: 7000 },
+]
+
+const newReviews = [
+  { author: '김민수', content: '생각보다 매콤해서 입맛에 딱 맞아요!' },
+  { author: '이수진', content: '냉동이라 큰 기대 안 했는데 맛있었어요.' },
+  { author: '박지훈', content: '양념이 진해서 밥반찬으로 딱이에요.' },
+]
+
+// [실습 1] 사용자 정보 검색 및 추가 (개별 요소 생성)
+// 1. form submit 시 입력값을 가져와 users에서 find 하세요.
+// 2. 일치하는 사용자가 있다면 createElement로 li를 만들어 추가하세요.
+console.groupCollapsed('1. 사용자 검색 및 추가')
+
+// 이곳에 코드를 작성하세요
 
 console.groupEnd()
 
