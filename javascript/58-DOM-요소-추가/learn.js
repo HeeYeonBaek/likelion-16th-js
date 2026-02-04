@@ -2,6 +2,38 @@
 // 실습: 요소 생성 및 추가 (createElement, appendChild, insertBefore)
 // --------------------------------------------------------------------------
 
+
+// 요소(Element) 생성
+const orderedList = document.createElement('ol')
+console.log(orderedList.outerHTML)
+
+// 생성된 요소에 속성 설정
+// - class 속성
+orderedList.className = 'demo-ol'
+orderedList.className += 'update-ol'
+orderedList.classList.add('list', 'dictionary')
+console.log(orderedList.className) // legacy
+console.log(orderedList.classList.value) // mordern
+
+// - setAttribute()
+orderedList.setAttribute('aria-label', '가요 톱 10')
+
+// - data-*
+orderedList.dataset.message ='2026년 2월 가요 톱 10'
+
+// - textContent
+orderedList.textContent = '<li>이렇게 넣으면 표준 위반!</li>'
+
+// - innerHTML
+orderedList.innerHTML = `
+  <li>K팝 노래 1</li>
+  <li>K팝 노래 2</li>
+  <li>K팝 노래 3</li>
+`
+console.log(orderedList.outerHTML)
+
+
+
 // [실습 1] 할 일 추가
 // 1. form의 submit 이벤트를 차단하세요 (e.preventDefault())
 // 2. input의 값을 읽어와서 새로운 <li> 요소를 만드세요.
