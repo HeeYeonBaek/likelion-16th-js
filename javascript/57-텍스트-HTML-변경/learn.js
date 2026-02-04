@@ -30,10 +30,52 @@ const headlines = [
   '공공장소에서는 이어폰 사용하기', '비상연락망은 가족끼리 공유'
 ]
 
-// 이곳에 코드를 작성하세요
+const main = document.getElementById('main-content')
+const heading = main.querySelector('h1')
 
-console.groupEnd()
+// textContent 속성
 
+{//읽기
+console.log(heading.textContent)
+
+//쓰기
+heading.textContent = '<em>글자가 기울어질까요?</em> 그대로 HTML이 출력될걸요?'
+
+console.log(heading.textContent)
+
+  console.groupEnd()
+}
+
+
+// innerHTML 속성
+
+{// 읽기
+console.log(heading.innerHTML)
+
+// 쓰기
+setTimeout(() => {
+  heading.innerHTML = `
+  <em>글자가 기울어질까요?</em> 그대로 HTML이 출력될걸요?
+`
+  // innerHTML 속성
+  console.log('내부 HTML',heading.innerHTML)
+  
+  // outerHTML 속성 읽기
+  console.log('외부 HTML', heading.outerHTML)
+}, 2000);
+
+  // outerHTML 속성 쓰기
+
+  setTimeout(() => {
+    heading.outerHTML = `
+      <strong role="heading" aria-level = "1">
+        ${heading.innerHTML}
+      </strong>
+    `
+  }, 4000)
+
+  
+}
 
 // --------------------------------------------------------------------------
 // [실습 2] 프로필 카드 렌더링 (innerHTML)
@@ -41,7 +83,7 @@ console.groupEnd()
 // 2. 템플릿 리터럴을 활용하여 <h2>박상현</h2><p>프론트엔드 개발자</p> 구조를 만드세요.
 console.groupCollapsed('2. innerHTML 실습')
 
-// 이곳에 코드를 작성하세요
+
 
 console.groupEnd()
 
