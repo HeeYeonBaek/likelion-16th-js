@@ -41,53 +41,74 @@ const users = [
   })()
 
  // 성능 최적화 사례 (HTML 문자열 DOM에 삽입)
-  ;(() => {
+    ; (() => {
 
 
-    // list의 개별 요소에 이벤트 리스너 추가
-    // Array.from(list.children).forEach((child) => {
-    //   child.addEventListener('click', (e) => {
-    //     const item = e.currentTarget
-    //     const itemContent = item.textContent
-    //     alert(itemContent)
-    //   })
-    // })
+      // list의 개별 요소에 이벤트 리스너 추가
+      // Array.from(list.children).forEach((child) => {
+      //   child.addEventListener('click', (e) => {
+      //     const item = e.currentTarget
+      //     const itemContent = item.textContent
+      //     alert(itemContent)
+      //   })
+      // })
 
-    // 이벤트 위임의 위대함(?) 👏
-    list.addEventListener('click', (e) => {
-      const listItem = e.target.closest('li')
-      if (!listItem) return
-      alert(listItem.textContent)
-    })
+      // 이벤트 위임의 위대함(?) 👏
+      list.addEventListener('click', (e) => {
+        const listItem = e.target.closest('li')
+        if (!listItem) return
+        alert(listItem.textContent)
+      })
     
-    button.addEventListener(
-      'click', 
-      () => {
-        // ❌ 나쁜 코드 (성능 저하 )
-        // users.forEach(({ job, name }) => {
-        //   // HTML 코드 생성
-        //   const htmlCode = `<li>${job} ${name}</li>`
-        //   list.innerHTML += htmlCode // 그려라! x 10
-        // })
+      button.addEventListener(
+        'click',
+        () => {
+          // ❌ 나쁜 코드 (성능 저하 )
+          // users.forEach(({ job, name }) => {
+          //   // HTML 코드 생성
+          //   const htmlCode = `<li>${job} ${name}</li>`
+          //   list.innerHTML += htmlCode // 그려라! x 10
+          // })
 
-        // ✅ 좋은 코드 (성능 저하 없음)
-        // const liItemsHTMLCode = users
+          // ✅ 좋은 코드 (성능 저하 없음)
+          // const liItemsHTMLCode = users
           // 메서드 체이닝
           // .map(({ job, name }) => `<li>${job} ${name}</li>`)
           // .join('')
 
-        const liItemsHTMLCode = users
-          .reduce((htmlCode, { job, name }) => {
-            htmlCode += `<li>${job} ${name}</li>`
-            return htmlCode
-          }, '')
+          const liItemsHTMLCode = users
+            .reduce((htmlCode, { job, name }) => {
+              htmlCode += `<li>${job} ${name}</li>`
+              return htmlCode
+            }, '')
 
-        // console.log(liItemsHTMLCode)
-        list.innerHTML += liItemsHTMLCode // 그려라! x 1
-      }
-    )
+          // console.log(liItemsHTMLCode)
+          list.innerHTML += liItemsHTMLCode // 그려라! x 1
+        }
+      )
 
-  })()
+    })()
+
+
+    // 효과적으로 여러 요소(들)을 DOM에 삽입하는 방법
+    // 문서 조각 (DocumentFragment) 요소를 사용
+
+    ; (() => {
+      // 문서 조각(가상 DOM 컨테이너) 객체 생성
+      const fragment = document.createDocumentFragment()
+
+      button.addEventListener('click', () => {
+        users.forEach(({ job, name }) => {
+          const item = document.createElement('li')
+          item.textContent = `${job} ${name}`
+          // fragment 객체에 삽입(성능저하? 없어요!!)
+          fragment.firstElementChild.appendChild(item)
+        })
+
+        console.log(fragment.firstElementChild.outerHTML)
+        list.innerHTML += fragment.firstElementChild.innerHTML
+      })
+    })
 }
 
 
@@ -99,7 +120,7 @@ const todaysMenu = [
   { name: '제육볶음', price: 10000 },
   { name: '떡볶이', price: 7000 },
 ]
-
+console.log(todaysMenu)
 const newReviews = [
   { author: '김민수', content: '생각보다 매콤해서 입맛에 딱 맞아요!' },
   { author: '이수진', content: '냉동이라 큰 기대 안 했는데 맛있었어요.' },
