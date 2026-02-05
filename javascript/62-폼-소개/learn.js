@@ -13,6 +13,14 @@ emailForm.addEventListener('submit', (e) => {
 
   // 폼을 통해 입력되 사용자의 정보를 제어
   console.log('폼을 통해 입력된 사용자의 정보를 제어')
+    const inputElement = {
+    value: '...'
+  }
+  
+  // const value = inputElement.value
+  // 구조 분해 할당
+  const { value: anotherValue } = inputElement // { value }
+  console.log(anotherValue)
   
   // 클라이언트 측에서 JavaScript를 사용해
   // 사용자 입력 정보가 유효한지 확인
