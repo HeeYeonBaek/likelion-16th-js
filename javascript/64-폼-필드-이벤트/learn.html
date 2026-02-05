@@ -4,7 +4,6 @@
   <head>
     <meta charset="UTF-8" />
     <title>폼 필드 이벤트</title>
-    <meta name="description" content="htmlhint 어렵다..." />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./assets/styles.css" />
     <link rel="icon" href="./assets/es-logo.png" />
@@ -13,33 +12,64 @@
 
   <body>
     <a href="#main-content" class="sr-only focusable">본문 바로가기</a>
-    
- <div style="margin: 32px;">
-  <form class="email-register-form" style="padding: 24px; border: 8px solid currentColor;">
-    <div class="form-control">
-      <label for="email">이메일</label>
-      <input type="email" name="email" id="email" />
-    </div>
 
-    <div class="checkbox-container">
-      <p>어떤 과일을 좋아하세요?</p>
-      <div class="checkbox-field">
-        <input type="checkbox" name="apple" id="apple" />
-        <label for="apple">🍎 사과</label>
-      </div>
-      <div class="checkbox-field">
-        <input type="checkbox" name="grape" id="grape" />
-        <label for="grape">🍇 포도</label>
-      </div>
-      <div class="checkbox-field">
-        <input type="checkbox" name="lemon" id="lemon" />
-        <label for="lemon">🍋 레몬</label>
-      </div>
-    </div>
+    <div style="margin: 32px;">
+      <form class="email-register-form" style="padding: 24px; border: 8px solid currentColor;">
+        <div class="form-control">
+          <label for="email">이메일</label>
+          <input type="email" name="email" id="email" />
+        </div>
 
-    <button type="submit">보내기</button>
-  </form>
-</div>
+        <div class="textarea-container">
+          <label for="comment">댓글</label>
+          <textarea
+            id="comment"
+            name="comment"
+            placeholder="댓글을 작성해주세요."
+            cols="60"
+            rows="3"
+          ></textarea>
+        </div>
+
+        <div class="radio-button-container">
+          <p>어떤 과일을 좋아하세요? (하나만 체크 가능)</p>
+          <div class="radio-button">
+            <input type="radio" name="favorite-fruit" id="apple" value="사과" />
+            <label for="apple">🍎 사과</label>
+          </div>
+          <div class="radio-button">
+            <input type="radio" name="favorite-fruit" id="grape" value="포도" checked />
+            <label for="grape">🍇 포도</label>
+          </div>
+          <div class="radio-button">
+            <input type="radio" name="favorite-fruit" id="lemon" value="레몬" />
+            <label for="lemon">🍋 레몬</label>
+          </div>
+          <div class="radio-button">
+            <input type="radio" name="favorite-fruit" id="none" value="없음" />
+            <label for="none">😝 없음</label>
+          </div>
+        </div>
+
+        <div class="checkbox-container" hidden>
+          <p>어떤 과일을 좋아하세요?</p>
+          <div class="checkbox-field">
+            <input type="checkbox" name="apple" id="checkbox-apple" checked />
+            <label for="checkbox-apple">🍎 사과</label>
+          </div>
+          <div class="checkbox-field">
+            <input type="checkbox" name="grape" id="checkbox-grape" />
+            <label for="checkbox-grape">🍇 포도</label>
+          </div>
+          <div class="checkbox-field">
+            <input type="checkbox" name="lemon" id="checkbox-lemon" checked />
+            <label for="checkbox-lemon">🍋 레몬</label>
+          </div>
+        </div>
+
+        <button type="submit">보내기</button>
+      </form>
+    </div>
 
     <main class="prose">
       <h1>폼 필드 종합 실습</h1>
@@ -59,20 +89,20 @@
         <section>
           <h3>2. 관심 분야 (중복 선택)</h3>
           <div class="checkbox-group">
-  <label for="hobby-coding"><input type="checkbox" id="hobby-coding" name="hobby" value="coding" checked /> 💻 코딩</label>
-  <label for="hobby-music"><input type="checkbox" id="hobby-music" name="hobby" value="music" /> 🎵 음악</label>
-  <label for="hobby-reading"><input type="checkbox" id="hobby-reading" name="hobby" value="reading" checked /> 📚 독서</label>
-</div>
+            <label><input type="checkbox" name="hobby" value="coding" checked /> 💻 코딩</label>
+            <label><input type="checkbox" name="hobby" value="music" /> 🎵 음악</label>
+            <label><input type="checkbox" name="hobby" value="reading" checked /> 📚 독서</label>
+          </div>
         </section>
 
         <section>
           <h3>3. 가장 좋아하는 계절 (단일 선택)</h3>
           <div class="radio-group">
-  <label for="season-spring"><input type="radio" id="season-spring" name="season" value="spring" /> 봄</label>
-  <label for="season-summer"><input type="radio" id="season-summer" name="season" value="summer" checked /> 여름</label>
-  <label for="season-autumn"><input type="radio" id="season-autumn" name="season" value="autumn" /> 가을</label>
-  <label for="season-winter"><input type="radio" id="season-winter" name="season" value="winter" /> 겨울</label>
-</div>
+            <label><input type="radio" name="season" value="spring" /> 봄</label>
+            <label><input type="radio" name="season" value="summer" checked /> 여름</label>
+            <label><input type="radio" name="season" value="autumn" /> 가을</label>
+            <label><input type="radio" name="season" value="winter" /> 겨울</label>
+          </div>
         </section>
 
         <section>
