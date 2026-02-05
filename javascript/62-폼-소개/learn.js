@@ -6,7 +6,6 @@ const emailForm = document.querySelector('.send-email-form')
 
 emailForm.addEventListener('submit', (e) => {
 
-  // eslint-disable-next-line no-unused-vars
   const form = e.currentTarget
   // 브라우저 기본 작동 (서버 프로그램으로 입력된 정보 전달, 페이지 이동)방지
 
