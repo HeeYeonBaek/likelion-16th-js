@@ -3,7 +3,7 @@
 // --------------------------------------------------------------------------
 
 // 폼 입력 필드 이벤트 제어
-; (() => {
+;(() => {
   
   // 폼 요소에 이벤트 리스너 추가 (이벤트 위임, 버블링 단계 활용)
   // 폼에 설정하는 이벤트 리스너
@@ -42,31 +42,56 @@
   })
 
   emailInput.addEventListener('blur', (e) => {
-    const input = e.currentTarget
+    const input = e.currentTarget 
     console.log('초점이 벗어날 때 blur 이벤트 발생:', input)
+  })
+
+  // 체크박스 이벤트 제어
+;(() => {
+  
+  const container = document.querySelector('.checkbox-container')
+  const checkboxes = Array
+    .from(container.children) // HTMLCollection → Array
+    .slice(1) // <p> 제외 나머지 .checkbox-field만 수집 (새 배열 반환)
+    .map((fieldElement) => {
+      const checkbox = fieldElement.querySelector('[type="checkbox"]')
+      return checkbox // .checkbox-field > input:checkbox 반환
+    })
+  
+  console.log(checkboxes) // [input#apple, input#grape, input#lemon]
+
+  checkboxes.forEach(checkbox => {
+    // console.log(checkbox.value) // 값: 'on' ????
+    console.log(checkbox.checked) // 체크 유무
+  })
+
+  const checkedList = checkboxes.filter(({ checked }) => checked)
+  console.log(checkedList)
+
+  const firstCheckedBox = checkboxes.find(({ checked }) => checked)
+  console.log(firstCheckedBox)
+
+})()
+  const container = document.querySelector('.checkbox-container')
+  
+  // 이벤트 위임
+  container.addEventListener('change', (e) => {
+    const checkbox = e.target.closest('[type="checkbox"]')
+    if (!checkbox) return
+  
+    // 구조 분해 할당
+    const { id, checked } = checkbox
+    // 향상된 객체 리터럴
+    console.log({ id, checked })
+    
+    // console.log({
+    // id: checkbox.id, 
+    // checked: checkbox.checked})
   })
 
 })()
 
-
-  // 체크박스 이벤트 제어
-
-  ; (() => {
-    const container = document.querySelector('.checkbox-container')
-    const checkBoxes = Array
-      .from(container.children)
-      .slice(1)
-      .map((fieldElement) => {
-        const checkbox = fieldElement.querySelector('[type="checkbox"]')
-        return checkbox
-      })
-
-    console.log(checkBoxes)
-
-    checkBoxes.forEach(checkbox => {
-      console.log(checkbox.value)
-    })
-  })
+// 체크박스 체크 상태(check)
 
 
 // --------------------------------------------------------------------------
