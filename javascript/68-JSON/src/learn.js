@@ -1,76 +1,81 @@
 import './styles/main.css'
 
-// --------------------------------------------------------------------------
-// JavaScript 객체(배열 포함) -> JSON(데이터 전송 포멧) 변환
-// --------------------------------------------------------------------------
-
-const family = {
-  name: '우리가족',
-  people: ['백건희', '백태희', '백희연', '백주연'],
-  location: '부천',
-  getPeopleCount() {
-    return this.people.length
+(() => {
+  const macbookPro = {
+    operatingSystem: 'macOS Sequoia 15.5(24F74)',
+    processor: '2.4GHz 8core Intel Core i9',
+    memory: 64,
   }
-}
+
+  // JS → JSON (서버에 보내기 전에 변환)
+  // const jsonString = JSON.stringify(macbookPro, ['processor', 'memory'])
+  const jsonString = JSON.stringify(macbookPro, null, 2)
+
+  const output = document.querySelector('.output-container')
+  output.textContent = jsonString
 
 
-// JS > JSON (서버에 보내기 전에 변환)
-const familyJSON = JSON.stringify(family)
-console.log(familyJSON)
+  // JSON → JS (서버에서 가져온 후 변환)
+  const parsedMacbookPro = JSON.parse(jsonString)
+  console.log(parsedMacbookPro)
+}) //()
 
-// JSON > JS (서버에서 가져온 후 변환)
-const parsedFamilyObject = JSON.parse(familyJSON)
-console.log(parsedFamilyObject)
+// --------------------------------------------------------------------------
+// 실습: JSON 파싱 및 데이터 정리 (Data Massaging)
+// --------------------------------------------------------------------------
 
+;(() => {
+  
+  const xhr = new XMLHttpRequest()
 
+  xhr.open('GET', 'https://api.github.com/users/HeeYeonBaek/repos')
 
-  ; (() => {
-    const macbookPro = {
-      operatingSystem: 'macOS Sequoia 15.5(24F74)',
-      processor: '2.4GHz 8core Intel Core i9',
-      memory: 64,
-    }
+  // 서버에 보낼 데이터
+  const data = {
+    message: '배고파요!'
+  }
 
-    const jsonString = JSON.stringify(macbookPro, null, 2)
-    console.log(jsonString)
+  // 요청할 때 보낼 데이터(js 객체 -> json 문자열화)
+  // xhr.send(JSON.stringify(data))
+  xhr.send(null)
 
-    const parseMacBook = JSON.parse(jsonString)
-    console.log(parseMacBook)
-
-    const output = document.querySelector('.output-container')
-    output.textContent = jsonString
-  })()
-
-
-
-
-
-
-
-
-
-
-
-
-  // --------------------------------------------------------------------------
-  // 실습: JSON 파싱 및 데이터 정리 (Data Massaging)
-  // --------------------------------------------------------------------------
-
-  ; (() => {
-    const xhr = new XMLHttpRequest()
-
-    xhr.open('GET', 'https://api.github.com/users/HeeYeonBaek')
-
-    xhr.send(null)
-
-    xhr.addEventListener('readystatechange', (e) => {
-      const { response } = e.currentTarget
-      console.log(response, typeof response)
-
-      const gitHubUser = JSON.parse(response)
-      console.table(gitHubUser)
+  // 응답 받은 결과(json 문자열 -> js 객체화)
+  xhr.addEventListener('readystatechange', (e) => {
+    const { response } = e.currentTarget
+    // console.log(response, typeof response)
+    // json string -> js object
+    const repos = JSON.parse(response)
+    // 실제 필요한 정보만 데이터 정리(massage)
+    const massagedRepos = repos.map(({ name, visibility, private: priv, url }) => {
+      return {
+        name,
+        visibility,
+        private: priv,
+        url,
+      }
     })
+
+    console.log(massagedRepos)
   })
+
+})()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // --------------------------------------------------------------------------
