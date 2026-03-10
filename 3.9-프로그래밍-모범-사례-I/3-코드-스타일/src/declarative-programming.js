@@ -15,14 +15,46 @@ import fetchProducts from './api/fetchProducts'
 //   - filter
 //     - keyword: ''
 //     - category: 'all'
-let state = null
+const state = {
+  isLoading: false,
+  error: '',
+  product: [],
+  filter: {
+    keyword: '',
+    category: 'all',
+  }
+
+}
+
+// 사용법 1. updateState(newState)
+setCount(count + 1)
+// 사용법 2. updataeState({prevState} => newState)
+setCount((prevCount) => prevCount + 2)
 
 // TODO 2: 상태 업데이트 엔진
 // - 상태를 업데이트한 후 반드시 render() 함수를 호출하여 UI를 동기화하세요.
 function updateState(newState) {
   // - updateState 함수는 newState 전달 받아 state 객체 업데이트 (Object.assign 활용)
   // - newState 타입이 함수인 경우, state를 전달해 반환되 값과 상태 병합
+  
+  // 객체 합성 방식이 필요
+  // object.assign(o1, o2)
+
+  if (typeof newState === 'function') {
+    
+  Object.assign(newState(state))
+  } else {
+    Object.assign(state,newState)
+  }
+
+  // UI그리기(리액트가 하는 일)
+  render()
 }
+
+console.log('업데이트 전:', state)
+updateState({ isLoading: true })
+console.log('업데이트 후:', state)
+
 
 
 // --------------------------------------------------------------------------
