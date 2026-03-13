@@ -21,7 +21,9 @@ const INITIAL_JSON = [
   },
 ]
 
-
+// ✅ 순수 함수
+// ✅ 부수 효과
+// ✅ 고차 함수
 init()
 
 function init() {
@@ -32,7 +34,12 @@ function init() {
 }
 
 // --------------------------------------------------------------------------
-// 순수 함수 (Pure Function)
+// 순수 함수 (Pure Function) !== 순수하지 않은 함수(불순 함수, Impure Function) 
+// 예측 가능한 함수 😃             예측할 수 없는 함수... 😭
+// 수학적인 함수                  버그를 유발할 가능성이 농후한 함수
+
+// x = 4
+// y = f(x) [ 4 * 4 ] = 16
 
 let renderCount = 0
 
@@ -75,6 +82,11 @@ function createCardHtml(title, value) {
   `
 }
 
+const r1=createCardHtml('순수하니?', '동일 입력 => 동일 출력')
+const r2=createCardHtml('순수하니?', '동일 입력 => 동일 출력')
+
+console.log(r1)
+console.log(r2)
 
 // --------------------------------------------------------------------------
 // 고차 함수 (HoF: Higher-order Function)
