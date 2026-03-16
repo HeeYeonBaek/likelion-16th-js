@@ -7,6 +7,61 @@
     <title>자바스크립트 야간 학습</title>
     <link rel="icon" type="image/svg+xml" href="/javascript.svg" />
     <script type="module" src="./src/main.js"></script>
+   <script type="module">
+      function runModuleContext() {
+        console.log(this) // this === undefined
+        console.log(String(this)) // this의 문자열
+      }
+
+      // runModuleContext()
+      // console.log(Object.is(runModuleContext, window.runModuleContext))
+    </script>
+    <script>
+    {
+      // 전역 컨텍스트와 this 기본 바인딩 확인
+      // 전역 범위(Global Scope)에서 실행되는 코드를 작성
+      // Global Execution Context 범위내에서 코드가 실행
+      function runGlobalContext() {
+        console.log(this) // this === Window {}
+        console.log(String(this)) // this의 문자열
+      }
+
+      // runGlobalContext()
+      // console.log(Object.is(runGlobalContext, window.runModuleContext))
+
+
+      // 메서드 호출과 암시적 바인딩(this)
+      const mentor = {
+        name: '야무',
+        speak() {
+          // 객체의 메서드 안에서 this는 무엇을 가리키나?
+          console.log(`안녕하세요! ${this.name}입니다.`)
+
+          // this === mentor
+          const that = this
+
+          // 메서드 내부에 일반 함수가 선언되었고 호출된다면 this는 무엇을 가리키나?
+          function innerFn() {
+            // console.log(`내부 함수 innerFn이 실행되면 this: ${String(this)}`)
+            // this === mentor
+            console.log(that) // this === mentor ?
+          }
+
+          innerFn()
+
+          // 함수 값을 사용하는 또 다른 방법 (힌트: 함수 [화살표] 표현식)
+          const innerArrowFn = () => {
+            console.log('arrow function\'s this:', this)
+          }
+
+          innerArrowFn()
+
+        }
+      }
+
+      mentor.speak()
+    }
+    </script>
   </head>
 
   <body>

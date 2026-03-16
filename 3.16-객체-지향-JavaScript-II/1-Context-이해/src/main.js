@@ -33,13 +33,18 @@ function runGlobalContext() {
   // TODO 1: 전역 컨텍스트와 일반 함수 호출
   //
   // Q1. 전역에서 함수를 그냥 호출했을 때 this는 무엇을 가리킬까요?
-  // 
+  //
   // Q2. 전역에서 함수를 그냥 호출했을 때 this는 무엇을 가리킬까요?
   //
+
+  const contextName = 'module'
+  const currentThis = String(this)
+  updateUI(contextName, currentThis, '모듈 컨텍스트가 활성화되었습니다.')
 
 }
 
 function runObjectMethod() {
+  
   const studyGroup = {
     name: 'JS 스터디',
     // TODO 2: 메서드 호출에서의 this 바인딩
@@ -52,7 +57,7 @@ function runObjectMethod() {
         //
 
       }
-      
+      innerFunc()
     },
   }
 

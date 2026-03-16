@@ -4,7 +4,7 @@
   "name": "learing-js",
   "version": "1.0.0",
   "scripts": {
-    "dev": "bunx --bun vite --port 3000",
+    "dev": "bunx --bun vite --port 4000",
     "build": "vite build",
     "preview": "vite preview"
   },
