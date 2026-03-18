@@ -5,7 +5,7 @@ import './style.css'
 // --------------------------------------------------------------------
 // - 오직 정해진 방법만으로 아이템을 넣고 뺄 수 있어 인벤토리(Inventory)와 유사
 // - 함수 실행이 종료되어도 내부 함수가 변수를 붙잡고(reference) 있다면 
-//   자바스크립트 청소부(G.C)가 해당 변수를 메모리에 유지
+//   자바스크립트 청소부(G.C)가 청소하지 않고 해당 변수를 메모리에 유지
 // - 데이터 무결성(Data Integrity)의 중요성
 // --------------------------------------------------------------------
 
@@ -85,19 +85,21 @@ function createHero(name) {
 // 테스트 및 검증 구간
 // --------------------------------------------------------------------------
 
-{
+(() => {
   // 1. 나만의 용사 생성
-  const myHero = createHero('희연') 
+  const myHero = createHero('야무')
   // console.log(myHero)
 
   // 2. 상태 확인 (처음에는 Lv.1, EXP.0)
-console.log('초기상태: ', myHero.getStatus())
+  console.log('초기 상태:', myHero.getStatus())
+  
   // 3. 경험치 획득 시도 (클로저를 통한 상태 유지 확인)
   // - 40 획득
-  console.log(myHero.gainExp(40).message)
+  console.log(myHero.gainExp(40).message) // 40 경험치 획득
   // - 70 획득 → 레벨업!
-  console.log(myHero.gainExp(70).message)
-  
+  console.log(myHero.gainExp(70).message) // 40 + 70 = 110(100) 경험치 획득 -> 레벨업
+  console.log('레벨업 상태:', myHero.getStatus())
+
   // 4. 보안 검사 (은닉화 확인)
   // - 직접 접근 시도(level)
   console.log(myHero.level)
@@ -107,11 +109,11 @@ console.log('초기상태: ', myHero.getStatus())
   // 5. 치트 엔진 차단 확인
   // - 외부에서 강제로 값을 바꾸려 해도 클로저 속 변수는 안전한가요?
   // - 히어로의 레벨을 99로 치트 시도!
-  console.log(myHero.level = 99)
+  myHero.level = 99
   // - 치트 후 상태: ???
   console.log(myHero.getStatus())
   
-}
+}) //()
 
 // 캐릭터 인스턴스(클로저)를 담을 변수
 let heroInstance = null
@@ -128,8 +130,6 @@ function handleCreateHero(event) {
   // 히어로 캐릭터 생성
   // 로직 작성
   heroInstance = createHero(name)
-  console.log(heroInstance.getStatus())
-
   
   if (!heroInstance) return alert('히어로 캐릭터 생성 로직을 작성해야 합니다.')
   updateUI()
@@ -159,7 +159,7 @@ function excuteHeroAction(actionType) {
     try {
       // 히어로의 레벨 99 치트 시도!
       // 로직 작성 (cheat.amount)
-      heroInstance.level = cheat.amount
+      heroInstance.levevl = cheat.amount
 
       updateUI('치트 감지: 시스템 주머니에 손을 댈 수 없습니다!')
     } catch (e) {
