@@ -13,6 +13,129 @@ import './style.css'
 //   전략 부품만 갈아 끼우면 되므로 클래스를 새로 만들 필요가 없습니다.
 // --------------------------------------------------------------------------
 
+// 상속 (Class)
+// - 슈퍼 클래스 캐러셀(Carousel)
+// - 서브 클래스 호리즌탈 캐러셀 (HorizontalCarousel)
+
+{
+  class Carousel{
+  constructor(name) {
+    this.name = name
+  }
+  render() {
+    console.log(`${this.name} 캐러셀을 화면에 렌더링 합니다.`)
+  }
+}
+
+// const myCarousel = new Carousel('기본')
+// myCarousel.render()
+
+class HorizontalCarousel extends Carousel{
+  constructor() {
+    super('가로형')
+  }
+
+  move() {
+    console.log(`가로 방향(← →)으로만 이동 가능합니다.`)
+  }
+}
+
+const myHCarousel = new HorizontalCarousel()
+
+myHCarousel.render()
+myHCarousel.move()
+
+class verticalCarousel extends Carousel{
+  constructor(){
+    super('세로형')
+  }
+
+  render(){
+    super.render()
+    console.log(`${this.name}캐러셀은 불투명도를 조정해 부드럽게 등장합니다.`)
+  }
+
+  move(){
+        console.log(`세로 방향(↑ ↓)으로만 이동 가능합니다.`)
+  }
+}
+
+const myVCarousel = new verticalCarousel()
+myVCarousel.render()
+  myVCarousel.move()
+}
+
+
+// 합성(전략: 끼워넣을 수 있는 부품 = 컴포넌트 = 레고블럭)
+{
+  class Carousel{
+    constructor(strategy) {
+      this.strategy = strategy
+    }
+
+    // 런타임(실행) 중에 전략(장비) 자유롭게 교체 가능
+    setStrategy(newStrategy) {
+      console.log('이동 전략을 변경합니다.')
+      this.strategy = newStrategy
+    }
+
+    performMove() {
+      // Carousel 본체는 구체적인 전략에 대해 잘 몰라도 된다.
+      // 전략(부품)에 맡길 뿐입니다.
+      this.strategy.move() // 하나의 통일된 약속(인터페이스) : 다형성
+    }
+
+    calculateSize(element) {
+      return this.strategy.getSize(element)
+    }
+  }
+
+  // 부품(전략) 생성
+  // - 가로형 이동
+  const HorizontalStrategy = {
+    move() { 
+      console.log('가로 슬라이딩 실행: 왼쪽/오른쪽으로 움직입니다.')
+    },
+    getSize(element) {
+      return element.offsetWidth
+    },
+  }
+
+  // - 세로형 이동
+  const VerticalStrategy = {
+    move() {
+      console.log('셀 슬라이딩 실행: 위/아래로 움직입니다.')
+    },
+    getSize(element) {
+      return element.offsetHeight
+    },
+    //...
+  }
+
+  // - 페이드인/아웃
+const FadeStrategy = {
+    move() {
+      console.log('페이드 효과 실행: 현재 슬라이드는 서서히 사라지고, 다음 슬라이드는 서서히 나타납니다.')
+    },
+    getSize(element) {
+      return { width: element.offsetWidth, height: element.offsetHeight }
+    },
+  }
+
+  // 캐러셀 생성
+const myCarousel = new Carousel(HorizontalStrategy)
+  myCarousel.performMove()
+
+  // 런타임(실행) 중에 필요에 의해서 전략을 교체
+  // 가로형 부품 -> 세로형 부품 교체
+
+  myCarousel.setStrategy(VerticalStrategy)
+  myCarousel.performMove()
+
+  myCarousel.setStrategy(FadeStrategy)
+  myCarousel.performMove()
+}
+
 // --------------------------------------------------------------------------
 // 확장성(Scalability) 관점의 차이
 // --------------------------------------------------------------------------
