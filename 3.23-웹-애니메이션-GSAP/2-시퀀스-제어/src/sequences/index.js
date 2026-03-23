@@ -9,21 +9,63 @@ const timelineButton = document.querySelector('[data-action="timeline-play"]')
 timelineButton?.addEventListener('click', handleTimelineAction)
 
 
+
+gsap.set(staggerTitle, {
+  y: 60,
+  opacity: 0,
+})
+
+
+staggerButton.addEventListener('click', () => {
+  gsap.fromTo(
+    staggerTitle,
+    {
+      y: 60,
+      opacity: 0,
+    },
+    {
+      y: 20,
+      opacity: 1,
+  
+      duration: 0.8,
+      ease: 'power3.inOut',
+    },
+  )
+})
+
 // --------------------------------------------------------------------------
 // 텍스트 스플리팅
 
 // TODO 0: 글자를 한 글자씩 나눠 구성하세요.
-
+convertSingleChars(staggerTitle);
 
 // --------------------------------------------------------------------------
 // 이벤트 리스너
 
 const chars = Array.from(document.querySelectorAll('[data-char]'))
 
+chars.forEach((char) => {
+  gsap.set(char, {y: 50, opacity: 0})
+})
+
+gsap.set('[data-char]', {y:50, opacitiy: 0})
+
 async function handleStaggerAction() {
   console.log('스태거(stagger) 애니메이션')
 
   // TODO 1: [data-char] 글자마다 0.2초 차이를 두고 트윈 애니메이션을 적용해보세요.
+  
+  gsap.to('[data-char]', {
+    y: 0,
+    opacity: 1,
+    duration: 1.2,
+    ease:'elastic.out(1, 0.5)',
+    stagger: {
+      amount: 0.8,
+        from: 'start'
+    }
+  })
+  
   // 첫 번째 글자가 y축 아래 방향에서 원래 위치로 떠오름
   // (0.2초 지난 뒤) 두 번째 글자가 y축 아래 방향에서 원래 위치로 떠오름
   // (0.2초 지난 뒤) 세 번째 글자가 y축 아래 방향에서 원래 위치로 떠오름
@@ -32,6 +74,16 @@ async function handleStaggerAction() {
   // (0.2초 지난 뒤) 여섯 번째 글자가 y축 아래 방향에서 원래 위치로 떠오름
   // (0.2초 지난 뒤) 일곱 번째 글자가 y축 아래 방향에서 원래 위치로 떠오름
   // (0.2초 지난 뒤) 여덟 번째 글자가 y축 아래 방향에서 원래 위치로 떠오름
+
+  chars.forEach((char, index) => {
+    gsap.to(char, {
+      y: 0,
+      opacity: 1,
+      duration: 1.2,
+      ease: 'back.out(1)',
+      delay: index * 0.2,
+    })
+  })
 }
 
 function handleTimelineAction() {
@@ -45,8 +97,28 @@ function handleTimelineAction() {
   // 3. box 요소를 순식간에 왼쪽으로 이동
   // 4. box 요소가 회전하며 나타남
   // 5. box 요소가 중앙으로 이동
+  
+  // gsap.to(box, { x: 120, duration: 0.25, ease: 'power2.out' })
+  // gsap.to(box, {rotation: 360, scale: 0, duration: 0.4, ease: 'power2.out'}, '+=0.1')
+  // gsap.to(box, {x: -120, duration: 0 }, '+=0.1')
+  // gsap.to(box, { rotation: -360, scale: 1, duration: 0.4, ease: 'power2.out'}, '+=0.1')
+  // gsap.to(box, {x: 0, duration: 0.25, ease:'power2.out'}, '+=0.1')
 
   // TODO 3:동알한 애니메이션을 gsap 타임라인(timeline)을 활용해 구현해보세요.
+  const timeline = gsap.timeline({ default: { ease: 'power2.out' } })
+  
+  timeline
+    .to(box, { x: 120, duration: 0.25, ease: 'power4.out'})
+    .to(box, { rotation: 360, scale: 0, duration: 0.4}, '+=0.2')
+    .set(box, { x: -120 })
+    .to(box, { rotation: -360, scale: 1, duration: 0.4 }, '+=0.2')
+    .to(box, { x: 0, duration: 0.25, ease: 'power4.out' }, '+=0.2')
+  
+  timeline.pause()
+
+  setTimeout(() => {
+    timeline.play()
+  }, 1500)
 }
 
 // --------------------------------------------------------------------------
