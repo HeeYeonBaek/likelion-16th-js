@@ -18,10 +18,15 @@ export const CentralHub = (() => {
   return {
     get: () => {
       // TODO 1: 여러 번 요청해도 singleton만 반환하도록 설정
-      
+      if (!instance) instance = singleton
+      return instance
     }
   }
 })()
+
+const x = CentralHub.get() // 동일한 싱글턴 객체
+const y = CentralHub.get() // 동일한 싱글턴 객체
+console.log(x===y)
 
 /**
  * [Observer 패턴] - 시스템 전파망
@@ -34,13 +39,18 @@ export const CentralHub = (() => {
  */
 export const createLogger = () => {
   // TODO 2-1: 구독자 명단 subscribers 생성 
-  
+  const subscribers = new Set()
 
   return {
     // TODO 2-2: 구독자 명단에 추가할 subscribe 메서드 작성
-    
+    subscribers(subscriber /*function*/) {
+      subscribers.add(subscriber) // Set{}
+    },
     // TODO 2-3: 등록된 모든 구독자에게 동시 방송할 log 메서드 작성
-
+    log(message) {
+      const formattedMessage = `[INFO] ${message}`
+      subscribers.forEach((subscriber) => subscriber(formattedMessage))
+    }
   }
 }
 
